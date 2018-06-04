@@ -1,9 +1,9 @@
-[Ll]ibrary/
-[Tt]emp/
-[Oo]bj/
-[Bb]uild/
-[Bb]uilds/
-Assets/AssetStoreTools*
+Small Steps/[Ll]ibrary/
+Small Steps/[Tt]emp/
+Small Steps/[Oo]bj/
+Small Steps/[Bb]uild/
+Small Steps/[Bb]uilds/
+Small Steps/Assets/AssetStoreTools*
 
 # Visual Studio cache directory
 .vs/
@@ -34,3 +34,7 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+Small Steps/fmod\.log
+
+Small Steps/fmod_editor\.log
