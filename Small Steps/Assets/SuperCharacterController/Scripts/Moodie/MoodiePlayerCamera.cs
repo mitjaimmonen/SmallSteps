@@ -29,7 +29,7 @@ public class MoodiePlayerCamera : MonoBehaviour {
     {
         transform.position = target.position;
 
-        yRotation += input.Current.MouseInput.y;
+        yRotation += input.Current.RotInput.y;
  
         Vector3 left = Vector3.Cross(machine.lookDirection, controller.transform.up);
 

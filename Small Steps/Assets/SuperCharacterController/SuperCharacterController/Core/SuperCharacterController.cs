@@ -703,7 +703,7 @@ public class SuperCharacterController : MonoBehaviour
             }
             else
             {
-                Debug.LogError("[SuperCharacterComponent]: No ground was found below the player; player has escaped level");
+                Debug.LogWarning("[SuperCharacterComponent]: No ground was found below the player; player has escaped level");
             }
         }
 

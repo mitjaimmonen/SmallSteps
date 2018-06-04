@@ -1,46 +1,85 @@
 ﻿using UnityEngine;
+using XInputDotNetPure;
 using System.Collections;
 
 public class PlayerInputController : MonoBehaviour {
 
     public PlayerInput Current;
-    public Vector2 RightStickMultiplier = new Vector2(3, -1.5f);
-
+    float moveAxisV;
+    float moveAxisH;
+    float rotAxisV;
+    float rotAxisH;
+    [Range(0.01f, 0.99f), Tooltip("Deadzone for joystick movement (Left stick).")]
+    public float movementDeadzone = 0.05f;
+    [Range(0.01f, 0.99f), Tooltip("Deadzone for joystick rotation (Right stick).")]
+    public float rotationDeadzone = 0.05f;
 	// Use this for initialization
 	void Start () {
         Current = new PlayerInput();
 	}
 
-	// Update is called once per frame
-	void Update () {
-        
+
+    public void HandleInput(GamePadState state, GamePadState prevState)
+    {
+
+        HandleMove(state);
+        HandleRotating(state); //Also basic attack
+
         // Retrieve our current WASD or Arrow Key input
         // Using GetAxisRaw removes any kind of gravity or filtering being applied to the input
         // Ensuring that we are getting either -1, 0 or 1
-        Vector3 moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        Vector3 moveInput = HandleMove(state);
+        // Vector3 moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        Vector2 rotInput = HandleRotating(state);
+        // Vector2 mouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
-        Vector2 mouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-
-        Vector2 rightStickInput = new Vector2(Input.GetAxisRaw("RightH"), Input.GetAxisRaw("RightV"));
-
-        // pass rightStick values in place of mouse when non-zero
-        mouseInput.x = rightStickInput.x != 0 ? rightStickInput.x * RightStickMultiplier.x : mouseInput.x;
-        mouseInput.y = rightStickInput.y != 0 ? rightStickInput.y * RightStickMultiplier.y : mouseInput.y;
-
-        bool jumpInput = Input.GetButtonDown("Jump");
+        bool jumpInput = HandleJump(state);
 
         Current = new PlayerInput()
         {
             MoveInput = moveInput,
-            MouseInput = mouseInput,
-            JumpInput = jumpInput
+            RotInput = rotInput,
+            JumpInput = jumpInput,
+            DoubleJumpInput = jumpInput
         };
+
+    }
+
+    bool HandleJump(GamePadState state)
+    {
+        return (state.Buttons.A == ButtonState.Pressed);
+        
+    }
+    Vector3 HandleMove(GamePadState state)
+    {
+        moveAxisH = state.ThumbSticks.Left.X;
+        moveAxisV = state.ThumbSticks.Left.Y;
+        Vector3 dir = new Vector3(moveAxisV,0, moveAxisV);
+        if (dir.magnitude < movementDeadzone)
+            return Vector3.zero;
+        return dir;
+        
+    }
+    Vector2 HandleRotating(GamePadState state)
+    {
+        rotAxisH = state.ThumbSticks.Right.X;
+        rotAxisV = state.ThumbSticks.Right.Y;
+        Vector2 rot = new Vector3(rotAxisH,rotAxisV);
+        if (rot.magnitude < rotationDeadzone)
+            return Vector3.zero;
+        return rot;
+    }
+
+	void Update () {
+        
+
 	}
 }
 
 public struct PlayerInput
 {
     public Vector3 MoveInput;
-    public Vector2 MouseInput;
+    public Vector2 RotInput;
     public bool JumpInput;
+    public bool DoubleJumpInput;
 }
