@@ -13,12 +13,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 114710736880725834}
-  - {fileID: 114377461502872188}
+  - {fileID: 114293083476539350}
   EditorEvents: []
-  MasterBankRef: {fileID: 114377461502872188}
+  MasterBankRef: {fileID: 114293083476539350}
   StringsBankRef: {fileID: 114710736880725834}
-  stringsBankWriteTime: 636637141192052097
+  stringsBankWriteTime: 636637147240623524
   cacheVersion: 2
+--- !u!114 &114293083476539350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\c6jlaiti\Documents\SmallSteps\Small Steps\Assets\FMOD\Project\Build\Desktop\Master
+    Bank.bank
+  lastModified: 636637147240628536
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 12474
+  Exists: 1
 --- !u!114 &114377461502872188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37,7 +56,7 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 12474
-  Exists: 1
+  Exists: 0
 --- !u!114 &114710736880725834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50,7 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: Assets\FMOD\Project\Build\Desktop\Master Bank.strings.bank
-  lastModified: 636637141192052097
+  lastModified: 636637147240623524
   LoadResult: 0
   FileSizes:
   - Name: Desktop
