@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{3cc497f4-dff2-4eb4-8bca-6f226326f4bc}">
+        <property name="assetPath">
+            <value>Comets/smash4.mp3</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>0.966530612244898</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{46e59fe6-395f-4eac-adc6-0d91b7957c2d}</destination>
+        </relationship>
+    </object>
+</objects>

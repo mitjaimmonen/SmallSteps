@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{a53b4b23-dab6-4bca-9fd3-3a21750bc08d}">
+        <property name="assetPath">
+            <value>Comets/Smash Rock On Debris_RBD 04.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>96</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>2.7413333333333334</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{46e59fe6-395f-4eac-adc6-0d91b7957c2d}</destination>
+        </relationship>
+    </object>
+</objects>

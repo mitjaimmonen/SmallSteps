@@ -5,6 +5,7 @@ using UnityEngine;
 public class NetCatcher : MonoBehaviour {
 
 	public bool isAttacking;
+	[FMODUnity.EventRef] public string catchSound;
 
 	void OnTriggerEnter(Collider col)
 	{
@@ -13,6 +14,7 @@ public class NetCatcher : MonoBehaviour {
 		{
 			if (col.gameObject.layer == LayerMask.NameToLayer("Satellite"))
 			{
+				FMODUnity.RuntimeManager.PlayOneShot(catchSound, col.transform.position);
 				Destroy(col.gameObject);
 			}
 		}

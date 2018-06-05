@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{56be74ba-4f31-4c95-95e5-bbeb492a5c20}">
+        <property name="assetPath">
+            <value>Satellites/external HD 4_dual channel.wav</value>
+        </property>
+        <property name="isStreaming">
+            <value>true</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>96</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>65.498666666666665</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{46e59fe6-395f-4eac-adc6-0d91b7957c2d}</destination>
+        </relationship>
+    </object>
+</objects>

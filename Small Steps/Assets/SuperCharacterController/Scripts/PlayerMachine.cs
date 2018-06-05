@@ -8,6 +8,8 @@ using System.Collections;
 [RequireComponent(typeof(PlayerInputController))]
 public class PlayerMachine : SuperStateMachine {
 
+    [FMODUnity.EventRef] public string chargeSound, swingSound, burstSound, floatSound;
+    FMOD.Studio.EventInstance floatSoundEI;
     public Transform AnimatedMesh;
     public PlayerCamera playerCamera;
     public Animator anim;
@@ -71,6 +73,14 @@ public class PlayerMachine : SuperStateMachine {
 	}
 
 
+    void PlayCharge()
+    {
+        //play charge sound
+    }
+    void PlaySwing()
+    {
+        //Play swing sound
+    }
     public void AttackEnd()
     {
         IsAttacking = false;
@@ -89,14 +99,23 @@ public class PlayerMachine : SuperStateMachine {
         {
             if (input.Current.AttackInput && !attacking)
             {
-                anim.SetBool("charge", true);
-                //Start charge
+                if (!anim.GetBool("charge"))
+                {
+                    FMODUnity.RuntimeManager.PlayOneShotAttached(chargeSound, this.gameObject);
+                    anim.SetBool("charge", true);
+                    
+                }
             }
             else if (!input.Current.AttackInput && anim.GetBool("charge"))
             {
                 anim.SetBool("charge", false);
-                IsAttacking = true;
-                // start attack
+                
+                if (!IsAttacking)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShotAttached(swingSound, this.gameObject);
+                    IsAttacking = true;
+                }
+
             }
         }
 
@@ -179,8 +198,14 @@ public class PlayerMachine : SuperStateMachine {
     void Idle_SuperUpdate()
     {
         // Run every frame we are in the idle state
+        floatSoundEI.setParameterValue("isFloating", 0);
+        if (!input.Current.JumpInput)
+        {
+            prevJumpInput = false;
+            
+        }
 
-        if (input.Current.JumpInput)
+        if (input.Current.JumpInput && !prevJumpInput)
         {
             currentState = PlayerStates.Jump;
             return;
@@ -209,7 +234,14 @@ public class PlayerMachine : SuperStateMachine {
 
     void Walk_SuperUpdate()
     {
-        if (input.Current.JumpInput)
+        floatSoundEI.setParameterValue("isFloating", 0);
+
+        if (!input.Current.JumpInput)
+        {
+            prevJumpInput = false;            
+        }
+            
+        if (input.Current.JumpInput && !prevJumpInput)
         {
             currentState = PlayerStates.Jump;
             return;
@@ -252,22 +284,35 @@ public class PlayerMachine : SuperStateMachine {
                 {
                     //Do doublejump burst???
                     Debug.Log("Double jump?");
+                    FMODUnity.RuntimeManager.PlayOneShotAttached(burstSound, this.gameObject);
                     doubleJumped = true;
                     // prevJumpInput = true;
                     moveDirection += controller.up * CalculateJumpSpeed(JumpHeight, Gravity);
                 }
-                Debug.Log("Double jump hover thingy?");
+                // Debug.Log("Double jump hover thingy?");
                 //Just hover maybe?!?!?!?
+
+                FMOD.Studio.PLAYBACK_STATE playbackState;
+                floatSoundEI.getPlaybackState(out playbackState);
+                if (!floatSoundEI.isValid() || playbackState == FMOD.Studio.PLAYBACK_STATE.STOPPING || playbackState == FMOD.Studio.PLAYBACK_STATE.STOPPED)
+                {
+                    Debug.Log(playbackState + ", isValid: " + floatSoundEI.isValid());
+		            floatSoundEI = FMODUnity.RuntimeManager.CreateInstance(floatSound);
+                    floatSoundEI.setParameterValue("isFloating", 1);
+		            floatSoundEI.start();
+
+ 			        FMODUnity.RuntimeManager.AttachInstanceToGameObject(floatSoundEI, GetComponent<Transform>(), GetComponent<Rigidbody>());
+                }
+
+
                 var vertical =(moveDirection - (Math3d.ProjectVectorOnPlane(controller.up, moveDirection))).magnitude;
                 float lastMagnitude = (lastPos - planet.position).magnitude;
                 float currentMagnitude = (currentPos - planet.position).magnitude;
-                Debug.Log(vertical);
                 if (lastMagnitude > currentMagnitude && vertical >3f)
                     moveDirection += controller.up * CalculateJumpSpeed(Time.deltaTime*0.25f, Gravity);
-                    
-                
+                     
             }
-
+            
         }
         Vector3 planarMoveDirection = Math3d.ProjectVectorOnPlane(controller.up, moveDirection);
         Vector3 verticalMoveDirection = moveDirection - planarMoveDirection;
@@ -276,10 +321,16 @@ public class PlayerMachine : SuperStateMachine {
         {
             moveDirection = planarMoveDirection;
             currentState = PlayerStates.Idle;
+            prevJumpInput = true;
+            
             return;            
         }
         if (!input.Current.JumpInput)
+        {
+            floatSoundEI.setParameterValue("isFloating", 0);
             prevJumpInput = false;
+            
+        }
        
 
         planarMoveDirection = Vector3.MoveTowards(planarMoveDirection, LocalMovement() * WalkSpeed, JumpAcceleration * controller.deltaTime);
@@ -293,6 +344,8 @@ public class PlayerMachine : SuperStateMachine {
     {
         controller.DisableClamping();
         controller.DisableSlopeLimit();
+        floatSoundEI.setParameterValue("isFloating", 0);
+        prevJumpInput = true;
         // moveDirection = trueVelocity;
     }
 
@@ -302,6 +355,7 @@ public class PlayerMachine : SuperStateMachine {
         {
             moveDirection = Math3d.ProjectVectorOnPlane(controller.up, moveDirection);
             currentState = PlayerStates.Idle;
+            prevJumpInput = true;
             return;
         }
 

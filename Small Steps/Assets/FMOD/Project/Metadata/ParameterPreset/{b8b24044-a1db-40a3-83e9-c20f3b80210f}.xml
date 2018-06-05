@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPreset" id="{b8b24044-a1db-40a3-83e9-c20f3b80210f}">
+        <property name="name">
+            <value>isFloating</value>
+        </property>
+        <relationship name="folder">
+            <destination>{069a76f1-f2f3-4123-b999-9c3e9b9b7467}</destination>
+        </relationship>
+        <relationship name="parameter">
+            <destination>{a079d252-d5cd-4593-ba55-e4b01fe34ea1}</destination>
+        </relationship>
+    </object>
+    <object class="GameParameter" id="{a079d252-d5cd-4593-ba55-e4b01fe34ea1}">
+        <property name="initialValue">
+            <value>0</value>
+        </property>
+    </object>
+</objects>

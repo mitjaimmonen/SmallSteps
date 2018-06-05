@@ -54,7 +54,7 @@ public class PlayerInputController : MonoBehaviour {
 
     bool HandleJump(GamePadState state)
     {
-        return (state.Buttons.A == ButtonState.Pressed);
+        return (state.Buttons.LeftShoulder == ButtonState.Pressed);
         
     }
     Vector3 HandleMove(GamePadState state)
