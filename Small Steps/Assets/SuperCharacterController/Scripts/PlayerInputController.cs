@@ -61,7 +61,7 @@ public class PlayerInputController : MonoBehaviour {
     {
         moveAxisH = state.ThumbSticks.Left.X;
         moveAxisV = state.ThumbSticks.Left.Y;
-        Vector3 dir = new Vector3(moveAxisV,0, moveAxisV);
+        Vector3 dir = new Vector3(moveAxisH,0,moveAxisV);
         if (dir.magnitude < movementDeadzone)
             return Vector3.zero;
         return dir;

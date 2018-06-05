@@ -11,11 +11,13 @@ public class PlayerMachine : SuperStateMachine {
     public Transform AnimatedMesh;
     public PlayerCamera playerCamera;
     public Animator anim;
+    public Transform planet;
 
     public float WalkSpeed = 4.0f;
+    public float RotSpeed = 5f;
     public float WalkAcceleration = 1000.0f;
     public float moveFriction = 1000f;
-    public float JumpAcceleration = 5.0f;
+    public float JumpAcceleration = 100.0f;
     public float JumpHeight = 3.0f;
     public float Gravity = 25.0f;
 
@@ -31,6 +33,8 @@ public class PlayerMachine : SuperStateMachine {
     private Vector3 moveDirection;
     // current direction our character's art is facing
     public Vector3 lookDirection { get; private set; }
+
+    private Vector3 lastPos, currentPos;
 
     private PlayerInputController input;
 
@@ -59,6 +63,11 @@ public class PlayerMachine : SuperStateMachine {
         // Set our currentState to idle on startup
         currentState = PlayerStates.Idle;
         netCatcher = GetComponentInChildren<NetCatcher>();
+        if(!planet)
+        {
+            var temp = GetComponentInChildren<Gravity>();
+            planet = temp.planet;
+        }
 	}
 
 
@@ -72,7 +81,7 @@ public class PlayerMachine : SuperStateMachine {
     protected override void EarlyGlobalSuperUpdate()
     {
 		// Rotate out facing direction horizontally based on mouse input
-        lookDirection = Quaternion.AngleAxis(-input.Current.RotInput.x * 1000f * Time.deltaTime, playerCamera.transform.forward) * lookDirection;
+        lookDirection = Quaternion.AngleAxis(input.Current.RotInput.x * RotSpeed * 100f * Time.deltaTime, controller.up) * lookDirection;
         // Put any code in here you want to run BEFORE the state's update function.
         // This is run regardless of what state you're in
 
@@ -99,7 +108,9 @@ public class PlayerMachine : SuperStateMachine {
         // This is run regardless of what state you're in
 
         // Move the player by our velocity every frame
+        lastPos = transform.position;
         transform.position += moveDirection * controller.deltaTime;
+        currentPos = transform.position;
 
         // Rotate our mesh to face where we are "looking"
         AnimatedMesh.rotation = Quaternion.LookRotation(lookDirection, controller.up);
@@ -242,15 +253,19 @@ public class PlayerMachine : SuperStateMachine {
                     //Do doublejump burst???
                     Debug.Log("Double jump?");
                     doubleJumped = true;
-                    prevJumpInput = true;
+                    // prevJumpInput = true;
                     moveDirection += controller.up * CalculateJumpSpeed(JumpHeight, Gravity);
                 }
-                else
-                {
-                    Debug.Log("Double jump hover thingy?");
-                    //Just hover maybe?!?!?!?
-                    moveDirection += controller.up * CalculateJumpSpeed(Time.deltaTime*0.15f, Gravity);
-                }
+                Debug.Log("Double jump hover thingy?");
+                //Just hover maybe?!?!?!?
+                var vertical =(moveDirection - (Math3d.ProjectVectorOnPlane(controller.up, moveDirection))).magnitude;
+                float lastMagnitude = (lastPos - planet.position).magnitude;
+                float currentMagnitude = (currentPos - planet.position).magnitude;
+                Debug.Log(vertical);
+                if (lastMagnitude > currentMagnitude && vertical >3f)
+                    moveDirection += controller.up * CalculateJumpSpeed(Time.deltaTime*0.25f, Gravity);
+                    
+                
             }
 
         }
@@ -271,6 +286,7 @@ public class PlayerMachine : SuperStateMachine {
         verticalMoveDirection -= controller.up * Gravity * controller.deltaTime;
 
         moveDirection = planarMoveDirection + verticalMoveDirection;
+        
     }
 
     void Fall_EnterState()
