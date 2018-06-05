@@ -2,15 +2,58 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelManager : MonoBehaviour {
+public class LevelManager : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public ScoreManager scoreManager;
+    public WaveManager waveManager;
+    public float planetRadius;
+
+    public GameObject planet;
+    public GameObject player;
+
+    public float ScoreForDisplay()
+    {
+        return 0;
+        //return scoreManager.GetScore();
+    }
+
+    public int WaveNumberForScore()
+    {
+        return waveManager.currentWave.waveNumber;
+    }
+
+    private void Awake()
+    {
+    }
+
+    private void Start()
+    {
+        waveManager.StartWaves();
+        //scoreManager.ClearScore();
+    }
+
+    private void Update()
+    {
+        ManageWaves();
+    }
+
+    void ManageWaves()
+    {
+         if (waveManager.SatelittesLeft())
+        {
+            waveManager.ExecuteWave(planet, planetRadius);
+        }
+        else
+        {
+           waveManager.ExitWave();
+        }
+    }
+
+    public void OnSatelitteCaught()
+    {
+        //add to score
+        //waveManager.satsCaught++;
+    }
+
 }

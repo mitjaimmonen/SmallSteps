@@ -4,13 +4,38 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    float currentScore;
+    int totalSatsCaught;
+
+    public float GetScore()
+    {
+        return currentScore;
+    }
+
+    public void AddToScore(int value)
+    {
+        currentScore += value;
+    }
+
+    public void ClearScore()
+    {
+        currentScore = 0;
+    }
+
+
+    public void SaveScore()
+    {
+        //save score to player prefs!
+    }
+
+    public void ReadScore()
+    {
+        //read score from player prefs
+    }
+
+    public void CaughtSatellite()
+    {
+        totalSatsCaught++;
+    }
+
 }
