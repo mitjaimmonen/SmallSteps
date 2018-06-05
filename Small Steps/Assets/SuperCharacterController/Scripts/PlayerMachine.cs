@@ -10,6 +10,7 @@ public class PlayerMachine : SuperStateMachine {
 
     public Transform AnimatedMesh;
     public PlayerCamera playerCamera;
+    public Animator anim;
 
     public float WalkSpeed = 4.0f;
     public float WalkAcceleration = 1000.0f;
@@ -18,12 +19,13 @@ public class PlayerMachine : SuperStateMachine {
     public float JumpHeight = 3.0f;
     public float Gravity = 25.0f;
 
-    bool doubleJumped = false, prevJumpInput;
+    bool doubleJumped = false, prevJumpInput, attacking = false;
 
     // Add more states by comma separating them
     enum PlayerStates { Idle, Walk, Jump, Fall }
 
     private SuperCharacterController controller;
+    private NetCatcher netCatcher;
 
     // current velocity
     private Vector3 moveDirection;
@@ -31,6 +33,17 @@ public class PlayerMachine : SuperStateMachine {
     public Vector3 lookDirection { get; private set; }
 
     private PlayerInputController input;
+
+    public bool IsAttacking
+    {
+        get {return attacking; }
+        set
+        {
+            attacking = value;
+            netCatcher.isAttacking = attacking;
+
+        }
+    }
 
 	void Start () {
 	    // Put any code here you want to run ONCE, when the object is initialized
@@ -45,14 +58,39 @@ public class PlayerMachine : SuperStateMachine {
 
         // Set our currentState to idle on startup
         currentState = PlayerStates.Idle;
+        netCatcher = GetComponentInChildren<NetCatcher>();
 	}
+
+
+    public void AttackEnd()
+    {
+        IsAttacking = false;
+    }
+
+
 
     protected override void EarlyGlobalSuperUpdate()
     {
 		// Rotate out facing direction horizontally based on mouse input
-        lookDirection = Quaternion.AngleAxis(input.Current.RotInput.x, controller.up) * lookDirection;
+        lookDirection = Quaternion.AngleAxis(-input.Current.RotInput.x * 1000f * Time.deltaTime, playerCamera.transform.forward) * lookDirection;
         // Put any code in here you want to run BEFORE the state's update function.
         // This is run regardless of what state you're in
+
+        if (anim)
+        {
+            if (input.Current.AttackInput && !attacking)
+            {
+                anim.SetBool("charge", true);
+                //Start charge
+            }
+            else if (!input.Current.AttackInput && anim.GetBool("charge"))
+            {
+                anim.SetBool("charge", false);
+                IsAttacking = true;
+                // start attack
+            }
+        }
+
     }
 
     protected override void LateGlobalSuperUpdate()
@@ -195,7 +233,7 @@ public class PlayerMachine : SuperStateMachine {
 
     void Jump_SuperUpdate()
     {
-        if (input.Current.DoubleJumpInput)
+        if (input.Current.JumpInput)
         {
             if (input.Current.JumpInput && !prevJumpInput)
             {
@@ -211,7 +249,7 @@ public class PlayerMachine : SuperStateMachine {
                 {
                     Debug.Log("Double jump hover thingy?");
                     //Just hover maybe?!?!?!?
-                    moveDirection += controller.up * CalculateJumpSpeed(Time.deltaTime, Gravity);
+                    moveDirection += controller.up * CalculateJumpSpeed(Time.deltaTime*0.15f, Gravity);
                 }
             }
 

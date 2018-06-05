@@ -18,7 +18,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 104.800995, y: -0.000015258789, z: -28.459991}
+        value: {x: 73.847, y: 0, z: -9.185}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -26,8 +26,17 @@ AnimationClip:
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 1
-        value: {x: -42.465, y: 0, z: 0}
+        time: 0.05
+        value: {x: 10.099001, y: 6.083, z: 3.9580002}
+        inSlope: {x: -1274.97, y: 121.670006, z: 0}
+        outSlope: {x: -1274.97, y: 121.670006, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 0.1
+        value: {x: -53.65, y: 12.167001, z: -24.447}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -37,7 +46,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: NetContainer
+    path: PlayerVisuals/NetContainer
   m_PositionCurves: []
   m_ScaleCurves: []
   m_FloatCurves: []
@@ -50,7 +59,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 3757885199
+      path: 2111171455
       attribute: 4
       script: {fileID: 0}
       typeID: 4
@@ -62,7 +71,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1
+    m_StopTime: 0.1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -83,7 +92,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 104.800995
+        value: 73.847
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -91,8 +100,17 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: -42.465
+        time: 0.05
+        value: 10.099001
+        inSlope: -1274.97
+        outSlope: -1274.97
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.1
+        value: -53.65
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -103,7 +121,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: NetContainer
+    path: PlayerVisuals/NetContainer
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -111,7 +129,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -0.000015258789
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -119,8 +137,17 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: 0
+        time: 0.05
+        value: 6.083
+        inSlope: 121.670006
+        outSlope: 121.670006
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.1
+        value: 12.167001
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -131,7 +158,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: NetContainer
+    path: PlayerVisuals/NetContainer
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -139,7 +166,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -28.459991
+        value: -9.185
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -147,8 +174,17 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: 0
+        time: 0.05
+        value: 3.9580002
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.1
+        value: -24.447
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -159,7 +195,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: NetContainer
+    path: PlayerVisuals/NetContainer
     classID: 4
     script: {fileID: 0}
   m_EulerEditorCurves:
@@ -170,7 +206,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: NetContainer
+    path: PlayerVisuals/NetContainer
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -180,7 +216,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: NetContainer
+    path: PlayerVisuals/NetContainer
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -190,7 +226,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: NetContainer
+    path: PlayerVisuals/NetContainer
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0

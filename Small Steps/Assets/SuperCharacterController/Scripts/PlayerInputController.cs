@@ -32,6 +32,7 @@ public class PlayerInputController : MonoBehaviour {
         // Vector3 moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         Vector2 rotInput = HandleRotating(state);
         // Vector2 mouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        bool attackInput = HandleAttack(state);
 
         bool jumpInput = HandleJump(state);
 
@@ -40,9 +41,15 @@ public class PlayerInputController : MonoBehaviour {
             MoveInput = moveInput,
             RotInput = rotInput,
             JumpInput = jumpInput,
-            DoubleJumpInput = jumpInput
+            AttackInput = attackInput
         };
 
+    }
+
+    bool HandleAttack(GamePadState state)
+    {
+        return (state.Buttons.RightShoulder == ButtonState.Pressed);
+        
     }
 
     bool HandleJump(GamePadState state)
@@ -81,5 +88,5 @@ public struct PlayerInput
     public Vector3 MoveInput;
     public Vector2 RotInput;
     public bool JumpInput;
-    public bool DoubleJumpInput;
+    public bool AttackInput;    
 }
