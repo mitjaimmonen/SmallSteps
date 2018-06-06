@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 public class MainMenuController : MonoBehaviour {
 
+	public Image overlay;
 	public GameObject startBtn;
 	public Animator anim;
 
@@ -21,7 +23,7 @@ public class MainMenuController : MonoBehaviour {
 		}
 		if (Input.GetButton("Submit"))
 		{
-			SetScrolled();
+			Invoke("SetScrolled", 0.2f);
 		}
 	}
 
@@ -34,12 +36,28 @@ public class MainMenuController : MonoBehaviour {
 	public void LoadLevel(string levelName)
 	{
 		if (anim.GetBool("isScrolled"))
-			SceneManager.LoadScene(levelName);
+			StartCoroutine(FadeOut(levelName));
 	}
 
 	public void QuitApplication()
 	{
 		if (anim.GetBool("isScrolled"))		
 			Application.Quit();
+	}
+
+	IEnumerator FadeOut(string levelName)
+	{
+		float time = 0;
+
+		while (time <= 1f)
+		{
+			overlay.color = Color.Lerp(overlay.color, Color.black, time);
+			time += Time.deltaTime;
+			yield return null;
+		}
+
+		SceneManager.LoadScene(levelName);
+
+		yield break;
 	}
 }
