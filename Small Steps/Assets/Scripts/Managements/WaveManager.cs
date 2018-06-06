@@ -28,6 +28,12 @@ public class WaveManager : MonoBehaviour
     private float spawnCounter = 0;
     private float timerCounter = 0;
 
+
+    public float WaveTimeLeft()
+    {
+        return Mathf.Max(0, currentWave.maxWaveTimer - timerCounter);
+    }
+
     public bool WithinTimer()
     {
         //checks if there is still time before next wave

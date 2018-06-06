@@ -11,28 +11,28 @@ public class HudHandler : MonoBehaviour
     public Slider healthbarSlider;
     public LevelManager gameMaster;
 
-    private SuperCharacterController player;
+    private PlayerMachine player;
     private int oldIndex;
     private float oldHealth;
     private Image sliderBackground;
 
     void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SuperCharacterController>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerMachine>();
 
     }
     private void Update()
     {
 
-        // if (oldHealth != player.CurrentHealth)
-        // {
-        //     float healthPercentage = player.CurrentHealth / player.MaxHealth;
-        //     healthbarSlider.value = healthPercentage;
-        //     oldHealth = player.CurrentHealth;
-        // }
+        if (oldHealth != player.CurrentHealth)
+        {
+            float healthPercentage = player.CurrentHealth / player.MaxHealth;
+            healthbarSlider.value = healthPercentage;
+            oldHealth = player.CurrentHealth;
+        }
 
-        // scoreText.text = "Score: " + gameMaster.ScoreForDisplay().ToString("f0");
-        // waveNumberText.text = "Wave: " + (gameMaster.WaveNumberForScore() + 1);
+        scoreText.text = "Score: " + gameMaster.scoreManager.GetScore().ToString("f0");
+        waveInfoText.text = "Wave: " + (gameMaster.WaveNumberForScore() + 1) + ", Time bonus: " + gameMaster.waveManager.WaveTimeLeft().ToString("f0");
 
 
         // if (gameMaster.scoreManager.GetScoreBonus() > 1)

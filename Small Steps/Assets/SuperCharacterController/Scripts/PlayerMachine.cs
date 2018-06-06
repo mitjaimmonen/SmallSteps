@@ -8,8 +8,8 @@ using System.Collections;
 [RequireComponent(typeof(PlayerInputController))]
 public class PlayerMachine : SuperStateMachine {
 
-    [FMODUnity.EventRef] public string chargeSound, swingSound, burstSound, floatSound;
-    FMOD.Studio.EventInstance floatSoundEI;
+    [FMODUnity.EventRef] public string chargeSound, swingSound, burstSound, floatSound, walkSound;
+    FMOD.Studio.EventInstance floatSoundEI, walkSoundEI;
     public Transform AnimatedMesh;
     public PlayerCamera playerCamera;
     public Animator anim;
@@ -40,6 +40,14 @@ public class PlayerMachine : SuperStateMachine {
 
     private PlayerInputController input;
 
+
+    [FMODUnity.EventRef] public string deathSound, damageSound;
+    bool destroying;
+    Health health;
+    public float maxHealth;
+    public GameObject takeDamageParticles;
+
+
     public bool IsAttacking
     {
         get {return attacking; }
@@ -49,6 +57,25 @@ public class PlayerMachine : SuperStateMachine {
             netCatcher.isAttacking = attacking;
 
         }
+    }
+    public float MaxHealth
+    {
+        get { return maxHealth; }
+    }
+    public float CurrentHealth
+    {
+        get { return health.CurrentHealth; }
+    }
+    public bool IsAlive
+    {
+        get { return health.isAlive(); }
+    }
+
+    
+    void Awake()
+    {
+        health = new Health(maxHealth);
+        
     }
 
 	void Start () {
@@ -86,6 +113,42 @@ public class PlayerMachine : SuperStateMachine {
         IsAttacking = false;
     }
 
+    public void GetHit(float dmgValue)
+    {
+
+        if (health.isAlive())
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(damageSound, transform.position);
+        }
+
+        health.TakeDamage(dmgValue);
+
+        if (takeDamageParticles)
+        {
+            Quaternion rot = transform.rotation;
+            rot.y = Random.Range(0, 360);
+            GameObject temp = Instantiate(takeDamageParticles, transform.position, rot);
+            Destroy(temp, 2f);
+        }
+
+
+
+
+        if (!health.isAlive())
+            DIE();
+
+    }
+    void DIE()
+	{
+		//Play dead animation
+		if (!destroying)
+		{
+			if (deathSound != "")
+				FMODUnity.RuntimeManager.PlayOneShot(deathSound, transform.position);
+			destroying = true;
+		}
+
+	}
 
 
     protected override void EarlyGlobalSuperUpdate()
@@ -235,6 +298,16 @@ public class PlayerMachine : SuperStateMachine {
     void Walk_SuperUpdate()
     {
         floatSoundEI.setParameterValue("isFloating", 0);
+
+
+        FMOD.Studio.PLAYBACK_STATE playbackState;
+        walkSoundEI.getPlaybackState(out playbackState);
+        if (!walkSoundEI.isValid() || playbackState == FMOD.Studio.PLAYBACK_STATE.STOPPED)
+        {
+            walkSoundEI = FMODUnity.RuntimeManager.CreateInstance(walkSound);
+            FMODUnity.RuntimeManager.AttachInstanceToGameObject(walkSoundEI, transform, GetComponent<Rigidbody>());
+            walkSoundEI.start();
+        }
 
         if (!input.Current.JumpInput)
         {
