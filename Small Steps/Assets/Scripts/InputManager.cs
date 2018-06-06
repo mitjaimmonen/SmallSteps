@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using XInputDotNetPure; // Required in C#
 
 public class InputManager : MonoBehaviour {
-		public PlayerInputController playerInput;
+		PlayerInputController playerInput;
         bool playerIndexSet = false;
         PlayerIndex playerIndex;
         GamePadState state;
@@ -64,7 +64,9 @@ public class InputManager : MonoBehaviour {
 
         prevState = state;
         state = GamePad.GetState(playerIndex);
-        playerInput.HandleInput(state, prevState);
+
+        if (playerInput)
+            playerInput.HandleInput(state, prevState);
         
 
     }
