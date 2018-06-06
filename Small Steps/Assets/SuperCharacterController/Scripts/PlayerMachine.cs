@@ -367,7 +367,7 @@ public class PlayerMachine : SuperStateMachine {
 
                 FMOD.Studio.PLAYBACK_STATE playbackState;
                 floatSoundEI.getPlaybackState(out playbackState);
-                if (!floatSoundEI.isValid() || playbackState == FMOD.Studio.PLAYBACK_STATE.STOPPING || playbackState == FMOD.Studio.PLAYBACK_STATE.STOPPED)
+                if (!floatSoundEI.isValid() || playbackState == FMOD.Studio.PLAYBACK_STATE.STOPPED)
                 {
                     Debug.Log(playbackState + ", isValid: " + floatSoundEI.isValid());
 		            floatSoundEI = FMODUnity.RuntimeManager.CreateInstance(floatSound);
@@ -376,6 +376,8 @@ public class PlayerMachine : SuperStateMachine {
 
  			        FMODUnity.RuntimeManager.AttachInstanceToGameObject(floatSoundEI, GetComponent<Transform>(), GetComponent<Rigidbody>());
                 }
+                else
+                    floatSoundEI.setParameterValue("isFloating", 1);
 
 
                 var vertical =(moveDirection - (Math3d.ProjectVectorOnPlane(controller.up, moveDirection))).magnitude;

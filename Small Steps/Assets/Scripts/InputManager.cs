@@ -25,9 +25,13 @@ public class InputManager : MonoBehaviour {
 	void Start () {
 		if (!playerInput)
         {
-            var go = GameObject.FindGameObjectWithTag("Player");
-            if (go)
-                playerInput = go.GetComponent<PlayerInputController>();
+            var go = GameObject.FindGameObjectsWithTag("Player");
+            foreach (var temp in go)
+            {
+                playerInput = temp.GetComponent<PlayerInputController>();
+                if (playerInput)
+                    break;
+            }
         }
 		SceneManager.sceneLoaded += OnLevelFinishedLoading;
 	}
@@ -36,9 +40,13 @@ public class InputManager : MonoBehaviour {
 	{
         if (!playerInput)
         {
-            var go = GameObject.FindGameObjectWithTag("Player");
-            if (go)
-                playerInput = go.GetComponent<PlayerInputController>();
+            var go = GameObject.FindGameObjectsWithTag("Player");
+            foreach (var temp in go)
+            {
+                playerInput = temp.GetComponent<PlayerInputController>();
+                if (playerInput)
+                    break;
+            }
         }
 	}
 

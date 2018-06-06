@@ -18,7 +18,13 @@ public class HudHandler : MonoBehaviour
 
     void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerMachine>();
+        var tags = GameObject.FindGameObjectsWithTag("Player");
+        foreach(var temp in tags)
+        {
+            player = temp.GetComponent<PlayerMachine>();
+            if (player)
+                break;
+        }
 
     }
     private void Update()
@@ -33,6 +39,7 @@ public class HudHandler : MonoBehaviour
 
         scoreText.text = "Score: " + gameMaster.scoreManager.GetScore().ToString("f0");
         waveInfoText.text = "Wave: " + (gameMaster.WaveNumberForScore() + 1) + ", Time bonus: " + gameMaster.waveManager.WaveTimeLeft().ToString("f0");
+        caughtSatellitesText.text = "Caught " + gameMaster.waveManager.satsCaught.ToString() + ", out of " + gameMaster.waveManager.currentWave.totalSattelitestoSpawn.ToString();
 
 
         // if (gameMaster.scoreManager.GetScoreBonus() > 1)

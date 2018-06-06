@@ -29,6 +29,8 @@ public class DirtParticles : MonoBehaviour {
  
              m_Particles[i].velocity += targetDir * gravity * Time.fixedDeltaTime;
          }
+		 var dir = (transform.position - target.transform.position);
+		 transform.up = dir;
  
          // Apply the particle changes to the particle system
          m_System.SetParticles(m_Particles, numParticlesAlive);
