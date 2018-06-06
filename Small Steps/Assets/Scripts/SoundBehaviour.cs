@@ -60,8 +60,6 @@ public class SoundBehaviour : MonoBehaviour {
 		
 		
 		musicEI.setParameterValue("isGame", SceneManager.GetActiveScene().buildIndex == 1 ? 1 : 0);
-		musicEI.setParameterValue("Master", 0.8f);
-		musicEI.setParameterValue("isAlive", 1);
 
 		FMOD.Studio.PLAYBACK_STATE playbackState;
 		musicEI.getPlaybackState(out playbackState);

@@ -75,6 +75,8 @@ public class InputManager : MonoBehaviour {
 
         if (playerInput)
             playerInput.HandleInput(state, prevState);
+        if (pauseMenuHandler)
+            pauseMenuHandler.HandleInput(state, prevState);
         
 
     }

@@ -14,10 +14,16 @@ public class PauseMenuHandler : MonoBehaviour
     InputManager input;
     bool isPaused;
     bool pause;
-    Player player;
+    PlayerMachine player;
     void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Player>();
+        var tags = GameObject.FindGameObjectsWithTag("Player");
+        foreach (var tag in tags)
+        {
+            player = tag.GetComponent<PlayerMachine>();
+            if (player)
+                break;
+        }
         input = GameObject.Find("InputManager").GetComponent<InputManager>();
         input.pauseMenuHandler = this;
 
@@ -26,21 +32,21 @@ public class PauseMenuHandler : MonoBehaviour
 
     void Update()
     {
-        // if (player.CurrentHealth < 0)
-        // {
-        //     Debug.Log("Dead");
-        //     Container.SetActive(true);
-        //     isPaused = Container.activeSelf;
-        //     resumeBtn.gameObject.SetActive(false);
-        //     if (EventSystem.current.currentSelectedGameObject == null || EventSystem.current.currentSelectedGameObject == resumeBtn.gameObject)
-        //         EventSystem.current.SetSelectedGameObject(mainMenuBtn.gameObject);
-        // }
-        // else
-        // {
-        //     resumeBtn.gameObject.SetActive(true);
-        //     if (EventSystem.current.currentSelectedGameObject == null)
-        //         EventSystem.current.SetSelectedGameObject(resumeBtn.gameObject);
-        // }
+        if (player.CurrentHealth < 0)
+        {
+            Debug.Log("Dead");
+            Container.SetActive(true);
+            isPaused = Container.activeSelf;
+            resumeBtn.gameObject.SetActive(false);
+            if (EventSystem.current.currentSelectedGameObject == null || EventSystem.current.currentSelectedGameObject == resumeBtn.gameObject)
+                EventSystem.current.SetSelectedGameObject(mainMenuBtn.gameObject);
+        }
+        else
+        {
+            resumeBtn.gameObject.SetActive(true);
+            if (EventSystem.current.currentSelectedGameObject == null)
+                EventSystem.current.SetSelectedGameObject(resumeBtn.gameObject);
+        }
     }
 
     public void HandleInput(GamePadState state, GamePadState prevState)
@@ -67,6 +73,7 @@ public class PauseMenuHandler : MonoBehaviour
 
     public void ChangeScene(string name)
     {
+        Time.timeScale = 1;        
         SceneManager.LoadScene(name);
     }
     public void ResumeGame()

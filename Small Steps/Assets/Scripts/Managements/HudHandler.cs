@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class HudHandler : MonoBehaviour
 {
     public Text waveInfoText;
+    public Text waveTimeText;
     public Text scoreText;
     public Text caughtSatellitesText;
     public Slider healthbarSlider;
@@ -37,9 +38,10 @@ public class HudHandler : MonoBehaviour
             oldHealth = player.CurrentHealth;
         }
 
-        scoreText.text = "Score: " + gameMaster.scoreManager.GetScore().ToString("f0");
-        waveInfoText.text = "Wave: " + (gameMaster.WaveNumberForScore() + 1) + ", Time bonus: " + gameMaster.waveManager.WaveTimeLeft().ToString("f0");
-        caughtSatellitesText.text = "Caught " + gameMaster.waveManager.satsCaught.ToString() + ", out of " + gameMaster.waveManager.currentWave.totalSattelitestoSpawn.ToString();
+        scoreText.text = gameMaster.scoreManager.GetScore().ToString("f0");
+        waveInfoText.text = "Wave: " + (gameMaster.WaveNumberForScore() + 1);
+        waveTimeText.text = "Bonus: " + gameMaster.waveManager.WaveTimeLeft().ToString("f0");
+        caughtSatellitesText.text = gameMaster.waveManager.satsCaught.ToString() + "/" + gameMaster.waveManager.currentWave.totalSattelitestoSpawn.ToString();
 
 
         // if (gameMaster.scoreManager.GetScoreBonus() > 1)
