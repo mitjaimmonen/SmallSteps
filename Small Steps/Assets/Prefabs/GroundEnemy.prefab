@@ -23,8 +23,10 @@ GameObject:
   - component: {fileID: 23071706373791926}
   - component: {fileID: 65530980139668044}
   - component: {fileID: 114199216524688458}
+  - component: {fileID: 114214906652181422}
   - component: {fileID: 114904919376456048}
   - component: {fileID: 95704446700571754}
+  - component: {fileID: 65703872484354596}
   m_Layer: 0
   m_Name: GroundEnemy
   m_TagString: Walkable
@@ -99,6 +101,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65703872484354596
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1469516634157852}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.5, y: 0.15, z: 3.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95704446700571754
 Animator:
   serializedVersion: 3
@@ -130,6 +144,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planetTransform: {fileID: 0}
   planetRadius: 20
+--- !u!114 &114214906652181422
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1469516634157852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f382559b85c4924da6ce4f8de0527ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114904919376456048
 MonoBehaviour:
   m_ObjectHideFlags: 1
