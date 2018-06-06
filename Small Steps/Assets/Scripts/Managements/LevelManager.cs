@@ -30,7 +30,7 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         waveManager.StartWaves();
-        //scoreManager.ClearScore();
+        scoreManager.ClearScore();
     }
 
     private void Update()
@@ -50,10 +50,10 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void OnSatelitteCaught()
+    public void OnSatelitteCaught(float scoreValue)
     {
-        //add to score
-        //waveManager.satsCaught++;
+        scoreManager.AddToScore(scoreValue);
+        waveManager.satsCaught++;
     }
 
 }

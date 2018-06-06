@@ -1,0 +1,326 @@
+fileFormatVersion: 2
+guid: ff52d59239f781e4a9cce3df4706e10f
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: EyeMonster
+    100002: Head
+    100004: JawBottom
+    100006: JawLeft
+    100008: JawRight
+    100010: Monster
+    100012: MonsterArma
+    100014: //RootNode
+    100016: MonsterSpine
+    100018: MonsterSpine_001
+    100020: MonsterSpine_002
+    100022: MonsterSpine_003
+    100024: MonsterSpine_004
+    100026: MonsterSpine_005
+    100028: MonsterSpine_006
+    100030: MonsterSpine_007
+    100032: MonsterSpine_008
+    100034: MonsterSpine_009
+    100036: MonsterSpine_010
+    100038: MonsterSpine_011
+    100040: MonsterSpine_012
+    100042: MonstTongue
+    100044: TeehMonster
+    100046: Tentacle_001
+    100048: TentacleArmature_001
+    100050: TentacleBone
+    100052: TentacleBone_001
+    100054: TentacleBone_002
+    100056: TentacleBone_003
+    100058: TentacleBone_004
+    100060: TentacleBone_005
+    100062: TentacleBone_006
+    100064: TentacleBone_007
+    100066: TentacleBone_008
+    100068: TentacleBone_009
+    100070: TentacleBone_010
+    100072: TentacleBone_011
+    100074: TentacleBone_012
+    100076: TentacleBone_013
+    100078: TentacleBone_014
+    100080: TentacleBone_015
+    100082: Tongue
+    100084: TongueBone
+    100086: TongueBone_001
+    100088: TongueBone_002
+    100090: TongueBone_003
+    100092: TongueBone_004
+    100094: TongueBone_005
+    100096: TongueBone_006
+    100098: TongueBone_007
+    100100: TongueBone_008
+    400000: EyeMonster
+    400002: Head
+    400004: JawBottom
+    400006: JawLeft
+    400008: JawRight
+    400010: Monster
+    400012: MonsterArma
+    400014: //RootNode
+    400016: MonsterSpine
+    400018: MonsterSpine_001
+    400020: MonsterSpine_002
+    400022: MonsterSpine_003
+    400024: MonsterSpine_004
+    400026: MonsterSpine_005
+    400028: MonsterSpine_006
+    400030: MonsterSpine_007
+    400032: MonsterSpine_008
+    400034: MonsterSpine_009
+    400036: MonsterSpine_010
+    400038: MonsterSpine_011
+    400040: MonsterSpine_012
+    400042: MonstTongue
+    400044: TeehMonster
+    400046: Tentacle_001
+    400048: TentacleArmature_001
+    400050: TentacleBone
+    400052: TentacleBone_001
+    400054: TentacleBone_002
+    400056: TentacleBone_003
+    400058: TentacleBone_004
+    400060: TentacleBone_005
+    400062: TentacleBone_006
+    400064: TentacleBone_007
+    400066: TentacleBone_008
+    400068: TentacleBone_009
+    400070: TentacleBone_010
+    400072: TentacleBone_011
+    400074: TentacleBone_012
+    400076: TentacleBone_013
+    400078: TentacleBone_014
+    400080: TentacleBone_015
+    400082: Tongue
+    400084: TongueBone
+    400086: TongueBone_001
+    400088: TongueBone_002
+    400090: TongueBone_003
+    400092: TongueBone_004
+    400094: TongueBone_005
+    400096: TongueBone_006
+    400098: TongueBone_007
+    400100: TongueBone_008
+    2100000: MonsterArmor
+    2100002: Tentacle
+    2100004: TentacleLight
+    2100006: Nose_001
+    2100008: Mouth
+    2100010: Eyes_001
+    2100012: Light
+    2100014: Eyes
+    2100016: Eyes_002
+    2100018: RedCable
+    2100020: Sucker
+    4300000: Monster
+    4300002: EyeMonster
+    4300004: TeehMonster
+    4300006: MonstTongue
+    4300008: Tentacle_001
+    7400000: Default Take
+    7400002: MonsterArmaAction
+    7400004: TentacleArmatureAction_001
+    7400006: TongueAction
+    9500000: //RootNode
+    13700000: EyeMonster
+    13700002: Monster
+    13700004: MonstTongue
+    13700006: TeehMonster
+    13700008: Tentacle_001
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Default Take
+      takeName: Default Take
+      firstFrame: 8
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: MonsterArmaAction
+      takeName: MonsterArmaAction
+      firstFrame: -1
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: TentacleArmatureAction_001
+      takeName: TentacleArmatureAction_001
+      firstFrame: -1
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: TongueAction
+      takeName: TongueAction
+      firstFrame: -1
+      lastFrame: 0
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.2
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -8,6 +8,7 @@ public class WaveManager : MonoBehaviour
     public int satsSpawnedThisWave;
     public int satsCaught = 0;
     private int satsSpawnedOverall;
+    private LevelManager levelBoss;
     public GameObject satelitteToSpawn;
 
     public WaveTemplate currentWave;
@@ -53,6 +54,7 @@ public class WaveManager : MonoBehaviour
 
     public void StartWaves()
     {
+        levelBoss = gameObject.GetComponent<LevelManager>();
         EnterWave(0);
     }
 
@@ -109,6 +111,7 @@ public class WaveManager : MonoBehaviour
         for (int i = 0; i < value; i++)
         {
             satelitteToSpawn.GetComponent<Satellite>().planet = _planet;
+            satelitteToSpawn.GetComponent<Satellite>().levelManager = levelBoss;
             Instantiate(satelitteToSpawn, Random.insideUnitSphere * radius, Quaternion.identity);
             satsSpawnedThisWave++;
             satsSpawnedOverall++;

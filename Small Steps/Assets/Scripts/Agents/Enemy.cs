@@ -6,28 +6,58 @@ public class Enemy : MonoBehaviour
 {
 
     PathNavigator pathFinder;
-    Animator animator;
+    bool isAttacking;
+    public Animator tentacleAnimator;
 
 
     private void Awake()
     {
-        pathFinder = GetComponent<PathNavigator>();
-        animator = GetComponent<Animator>();
+        pathFinder = GetComponentInParent<PathNavigator>();
+        tentacleAnimator = GetComponent<Animator>();
+     
+    }
+
+    private void LateUpdate()
+    {
+        RotateToTarget();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && !isAttacking)
         {
-           // StartCoroutine(AttackRoutine());
+            StartCoroutine(AttackRoutine());
         }
     }
 
-    private IEnumerator AttackRoutine()
+    private void OnTriggerStay(Collider other)
     {
+        if (other.gameObject.tag == "Player" && !isAttacking)
+        {
+            StartCoroutine(AttackRoutine());
+        }
+    }
+
+    private void RotateToTarget()
+    {
+        Quaternion targetRot = Quaternion.LookRotation(pathFinder.target.transform.position - transform.position);
+        transform.rotation = targetRot;
+        transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
+
+    }
+
+    private IEnumerator AttackRoutine()
+    {      
         pathFinder.SetAttacking(true);
-        animator.SetTrigger("Attack");
-        yield return null;
+        tentacleAnimator.SetTrigger("Attack");
+        isAttacking = true;
+        yield return new WaitForSeconds(tentacleAnimator.GetCurrentAnimatorStateInfo(0).length);
+
+        pathFinder.SetAttacking(false);
+
+        isAttacking = false;
+
+
     }
 
 }

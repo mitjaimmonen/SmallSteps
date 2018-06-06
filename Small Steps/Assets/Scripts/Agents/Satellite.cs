@@ -9,6 +9,8 @@ public class Satellite : MonoBehaviour
     public Transform center;
     public Vector3 axis;
     public Vector3 desiredPosition;
+    public LevelManager levelManager;
+    public float scoreValue = 376.3f;
     public float radius = 2.0f;
     public float radiusSpeed = 0.5f;
     public float rotationSpeed = 80.0f;
@@ -63,6 +65,11 @@ public class Satellite : MonoBehaviour
         }
 
         return randomAxis;
+    }
+
+    private void OnDestroy()
+    {
+        levelManager.OnSatelitteCaught(scoreValue);
     }
 
 }
