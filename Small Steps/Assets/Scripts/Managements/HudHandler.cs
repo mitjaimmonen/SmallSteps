@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class HudHandler : MonoBehaviour
 {
-    public Text waveNumberText;
+    public Text waveInfoText;
     public Text scoreText;
-    public Text roundTimerText;
+    public Text caughtSatellitesText;
     public Slider healthbarSlider;
     public LevelManager gameMaster;
 
