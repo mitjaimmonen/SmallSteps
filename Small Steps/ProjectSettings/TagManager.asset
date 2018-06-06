@@ -8,6 +8,7 @@ TagManager:
   - NotWalkable
   - InputManager
   - SoundManager
+  - GroundCheck
   layers:
   - Default
   - TransparentFX

@@ -12,7 +12,7 @@ public class ScoreManager : MonoBehaviour {
         return currentScore;
     }
 
-    public void AddToScore(int value)
+    public void AddToScore(float value)
     {
         currentScore += value;
     }
