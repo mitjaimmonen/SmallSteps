@@ -6,8 +6,7 @@ using System.Collections;
 /// </summary>
 public class Gravity : MonoBehaviour {
     
-    [SerializeField]
-    Transform planet;
+    public Transform planet;
 
 	void Update () {
         Vector3 dir = (transform.position - planet.position).normalized;

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{f43d2a28-0d65-4157-aee6-eba0745d3768}">
+        <property name="assetPath">
+            <value>Satellites/HumBuzz-Tonal-02.wav</value>
+        </property>
+        <property name="isStreaming">
+            <value>true</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>96</value>
+        </property>
+        <property name="channelCount">
+            <value>1</value>
+        </property>
+        <property name="length">
+            <value>10.426666666666666</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{46e59fe6-395f-4eac-adc6-0d91b7957c2d}</destination>
+        </relationship>
+    </object>
+</objects>

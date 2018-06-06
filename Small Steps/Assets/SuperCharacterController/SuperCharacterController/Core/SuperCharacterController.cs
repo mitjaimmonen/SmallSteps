@@ -71,7 +71,7 @@ public class SuperCharacterController : MonoBehaviour
     public LayerMask Walkable;
 
     [SerializeField]
-    Collider ownCollider;
+    Collider[] ownColliders;
 
     [SerializeField]
     public float radius = 0.5f;
@@ -130,8 +130,13 @@ public class SuperCharacterController : MonoBehaviour
 
         heightScale = 1.0f;
 
-        if (ownCollider)
-            IgnoreCollider(ownCollider);
+        if (ownColliders.Length > 0)
+        {
+            foreach (var col in ownColliders)
+            {
+                IgnoreCollider(col);
+            }
+        }
 
         foreach (var sphere in spheres)
         {
@@ -703,7 +708,7 @@ public class SuperCharacterController : MonoBehaviour
             }
             else
             {
-                Debug.LogError("[SuperCharacterComponent]: No ground was found below the player; player has escaped level");
+                Debug.LogWarning("[SuperCharacterComponent]: No ground was found below the player; player has escaped level");
             }
         }
 

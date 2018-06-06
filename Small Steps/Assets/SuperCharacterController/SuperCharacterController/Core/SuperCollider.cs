@@ -22,11 +22,11 @@ public static class SuperCollider {
         }
         else if (collider is MeshCollider)
         {
-            RPGMesh rpgMesh = collider.GetComponent<RPGMesh>();
+            BSPTree rpgMesh = collider.GetComponent<BSPTree>();
 
             if (rpgMesh != null)
             {
-                closestPointOnSurface = rpgMesh.ClosestPointOn(to, radius, false, false);
+                closestPointOnSurface = rpgMesh.ClosestPointOn(to, radius);
                 return true;
             }
 

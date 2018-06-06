@@ -27,7 +27,7 @@ public class PlayerCamera : MonoBehaviour {
 	void LateUpdate () {
         transform.position = target.position;
 
-        yRotation += input.Current.MouseInput.y;
+        yRotation += input.Current.RotInput.y * machine.RotSpeed * 100f * Time.deltaTime;
 
         Vector3 left = Vector3.Cross(machine.lookDirection, controller.up);
 

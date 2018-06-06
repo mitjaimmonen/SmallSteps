@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Walkable
   - NotWalkable
+  tags:
+  - InputManager
   layers:
   - Default
   - TransparentFX
@@ -17,8 +19,9 @@ TagManager:
   - 
   - PostProcessing
   - GroundType
-  - 
-  - 
+  - TempCast
+  - Player
+  - Satellite
   - 
   - 
   - 

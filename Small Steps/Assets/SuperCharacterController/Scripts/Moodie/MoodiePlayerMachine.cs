@@ -52,7 +52,7 @@ public class MoodiePlayerMachine : SuperStateMachine
     protected override void EarlyGlobalSuperUpdate()
     {
         // Rotate out facing direction horizontally based on mouse input
-        lookDirection = Quaternion.AngleAxis(input.Current.MouseInput.x, transform.up) * lookDirection;
+        lookDirection = Quaternion.AngleAxis(input.Current.RotInput.x, transform.up) * lookDirection;
         // Put any code in here you want to run BEFORE the state's update function.
         // This is run regardless of what state you're in
     }
