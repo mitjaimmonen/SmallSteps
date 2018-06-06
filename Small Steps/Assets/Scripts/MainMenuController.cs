@@ -9,6 +9,7 @@ public class MainMenuController : MonoBehaviour {
 	public Image overlay;
 	public GameObject startBtn;
 	public Animator anim;
+	public SoundBehaviour sound;
 
 	void Awake()
 	{
@@ -55,7 +56,7 @@ public class MainMenuController : MonoBehaviour {
 			time += Time.deltaTime;
 			yield return null;
 		}
-
+		sound.StartingGame();
 		SceneManager.LoadScene(levelName);
 
 		yield break;

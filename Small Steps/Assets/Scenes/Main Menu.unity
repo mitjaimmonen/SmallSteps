@@ -323,6 +323,7 @@ MonoBehaviour:
   overlay: {fileID: 388318164}
   startBtn: {fileID: 379090820}
   anim: {fileID: 355426267}
+  sound: {fileID: 808788692}
 --- !u!1 &379090820
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,6 +760,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &808788692 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114046574245640416, guid: 7a1821a611f116348845fe8fb5de49ba,
+    type: 2}
+  m_PrefabInternal: {fileID: 390549971}
+  m_Script: {fileID: 11500000, guid: d3825caafefbe5e4e8ec03ccdf607451, type: 3}
 --- !u!1 &1229803914
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,8 +798,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00031823097, y: 1449}
-  m_SizeDelta: {x: 1563.4, y: 983}
+  m_AnchoredPosition: {x: 0.00031823097, y: 1394.5}
+  m_SizeDelta: {x: 1563.4, y: 1121.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1229803916
 MonoBehaviour:
@@ -825,16 +832,13 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1.25
-  m_Text: 'Once upon a time, things happened. Lore.
-
-    deep v DIY pork belly hella +1 irony salvia fixie chia Carles cred Austin chillwave
-    mumblecore Cosby sweater raw denim Etsy banjo Truffaut tousled literally you probably
-    haven''t heard of them heirloom sustainable viral authentic aesthetic trust fund
-    street art Blue Bottle meggings keffiyeh ennui food truck wayfarers Schlitz YOLO
-    Portland bespoke PBR tofu flexitarian biodiesel cliche leggings mlkshk disrupt
-    American on it dreamcatcher typewriter asymmetrical Banksy semiotics Godard hoodie
-    gluten-free pour-over photo booth'
+    m_LineSpacing: 1.5
+  m_Text: "BUZZ IS PART OF A CHINESE SECRET SPACE PROGRAM . HE WAS MENTORED BY THE
+    GHOST OF CHAIRMAN MAO .\r\nTHROUGH ALL HIS LIFE BUZZ WAS TRAINED FOR ONE MISSION:
+    TO GO TO THE MOON TO LIBERATE CAPITALIST SATELLITES FROM ITS ORBIT\r\nAND NOW
+    THE TIME IS COME, THE HOUR OF THE RACCOON .\r\n\r\nIT IS WITH BRAVERY AND AMBITION
+    THAT HE EMBARKS ON HIS VESSEL, THE SS WASTECONTAINER .\r\nTHESE MAY BE SMALL STEPS
+    FOR MEN, BUT FOR RACCOONS, THEY\u2019RE EVEN SMALLER...\r"
 --- !u!222 &1229803917
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1375,7 +1379,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1890340871}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.00019392201}
+  m_LocalPosition: {x: 0, y: 0, z: -0.00018397729}
   m_LocalScale: {x: 0.7869937, y: 0.78699386, z: 0.78699386}
   m_Children: []
   m_Father: {fileID: 355426271}
@@ -1383,7 +1387,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000061035156, y: 532.40015}
+  m_AnchoredPosition: {x: -0.000061035156, y: 444.4002}
   m_SizeDelta: {x: 1177.9, y: 502.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1890340873
@@ -1453,7 +1457,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1947933429}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.0001342537}
+  m_LocalPosition: {x: 0, y: 0, z: -0.00012430898}
   m_LocalScale: {x: 0.7869937, y: 0.78699386, z: 0.78699386}
   m_Children: []
   m_Father: {fileID: 355426271}
@@ -1461,7 +1465,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00012207031, y: 556.00024}
+  m_AnchoredPosition: {x: -0.00012207031, y: 468.0003}
   m_SizeDelta: {x: 1177.9, y: 613.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1947933431
@@ -1681,7 +1685,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00031823, y: 873}
+  m_AnchoredPosition: {x: 0.00031823, y: 785}
   m_SizeDelta: {x: 630.7, y: 185.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2114748236

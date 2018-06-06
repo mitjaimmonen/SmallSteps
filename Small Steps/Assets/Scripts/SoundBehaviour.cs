@@ -24,8 +24,14 @@ public class SoundBehaviour : MonoBehaviour {
 
 		targetCamera = GameObject.Find("Main Camera");
 
-		musicEI = FMODUnity.RuntimeManager.CreateInstance(backgroundMusic);
-		musicEI.start();
+		FMOD.Studio.PLAYBACK_STATE playbackState;
+		musicEI.getPlaybackState(out playbackState);
+		if (playbackState == FMOD.Studio.PLAYBACK_STATE.STOPPED)
+		{
+			Debug.Log(playbackState);
+			musicEI = FMODUnity.RuntimeManager.CreateInstance(backgroundMusic);
+			musicEI.start();
+		}
 
 		if (!targetCamera)
  			FMODUnity.RuntimeManager.AttachInstanceToGameObject(musicEI, GetComponent<Transform>(), GetComponent<Rigidbody>());
@@ -35,6 +41,12 @@ public class SoundBehaviour : MonoBehaviour {
 	}
 	void OnDisable() {
 		SceneManager.sceneLoaded -= LoadScene;
+	}
+
+	public void StartingGame()
+	{
+		musicEI.setParameterValue("isGame", 1);
+		
 	}
 
 	void LoadScene(Scene scene, LoadSceneMode mode)
@@ -53,7 +65,7 @@ public class SoundBehaviour : MonoBehaviour {
 
 		FMOD.Studio.PLAYBACK_STATE playbackState;
 		musicEI.getPlaybackState(out playbackState);
-		if (playbackState != FMOD.Studio.PLAYBACK_STATE.PLAYING || SceneManager.GetActiveScene().buildIndex == 0)
+		if (playbackState == FMOD.Studio.PLAYBACK_STATE.STOPPED)
 			musicEI.start();
 
 		if (!targetCamera)
@@ -66,12 +78,9 @@ public class SoundBehaviour : MonoBehaviour {
 	{
 		timer = Time.time;
 
-		musicEI.setParameterValue("isGame", SceneManager.GetActiveScene().buildIndex == 1 ? 1 : 0);
-		musicEI.setParameterValue("Master", 0.8f);
 		if (player)
 		{
 			transform.position = player.transform.position;
-			// musicEI.setParameterValue("isAlive", player.IsAlive ? 1 : 0);
 		}
 	}
 }
