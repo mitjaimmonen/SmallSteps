@@ -9,7 +9,7 @@ public class NetCatcher : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col)
 	{
-		Debug.Log("TriggerEnter, isAttacking: " + isAttacking);
+		// Debug.Log("TriggerEnter, isAttacking: " + isAttacking);
 		if (isAttacking)
 		{
 			if (col.gameObject.layer == LayerMask.NameToLayer("Satellite"))
