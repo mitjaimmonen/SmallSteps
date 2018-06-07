@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 114736545495691470}
-  - {fileID: 114673212069902640}
+  - {fileID: 114730353190107976}
   EditorEvents:
   - {fileID: 114184740795705986}
   - {fileID: 114298983321244748}
@@ -34,9 +34,9 @@ MonoBehaviour:
   - {fileID: 114722472235059764}
   - {fileID: 114361585569614828}
   - {fileID: 114743155544237430}
-  MasterBankRef: {fileID: 114673212069902640}
+  MasterBankRef: {fileID: 114730353190107976}
   StringsBankRef: {fileID: 114736545495691470}
-  stringsBankWriteTime: 636639856907681364
+  stringsBankWriteTime: 636640079026619131
   cacheVersion: 2
 --- !u!114 &114029451358642092
 MonoBehaviour:
@@ -52,7 +52,7 @@ MonoBehaviour:
   Path: event:/Jetpack burst
   guid: 8a2e84e53d685b47a27256393ca999bb
   Banks:
-  - {fileID: 114673212069902640}
+  - {fileID: 114730353190107976}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -60,6 +60,21 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 992
+--- !u!114 &114043481148074794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: isGame
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114106406458404274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,7 +89,7 @@ MonoBehaviour:
   Path: event:/GroundEnemyAttack
   guid: 62bb8cb7dd31a647b4bb927f3871d45e
   Banks:
-  - {fileID: 114673212069902640}
+  - {fileID: 114730353190107976}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -96,7 +111,7 @@ MonoBehaviour:
   Path: event:/Menu change selection
   guid: 350457069a387d40b862715384ad5ab8
   Banks:
-  - {fileID: 114673212069902640}
+  - {fileID: 114730353190107976}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -104,6 +119,21 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 240
+--- !u!114 &114175753708275906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: isGame
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114184740795705986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,7 +148,7 @@ MonoBehaviour:
   Path: event:/Satellite random sounds
   guid: 08427121d59f0e4ab8f25cc043184a17
   Banks:
-  - {fileID: 114673212069902640}
+  - {fileID: 114730353190107976}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -140,7 +170,7 @@ MonoBehaviour:
   Path: event:/Menu select item
   guid: 0ef7a26152c581428b0cbd0f3fb656a8
   Banks:
-  - {fileID: 114673212069902640}
+  - {fileID: 114730353190107976}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -177,12 +207,12 @@ MonoBehaviour:
   Path: event:/Music and Ambient 2
   guid: 2ea4316b4974214898adfccf05abb22e
   Banks:
-  - {fileID: 114673212069902640}
+  - {fileID: 114730353190107976}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 114530360577328760}
+  - {fileID: 114043481148074794}
   MinDistance: 1
   MaxDistance: 20
   Length: 296665
@@ -200,7 +230,7 @@ MonoBehaviour:
   Path: event:/Menu Enter Game
   guid: de862d1baa026945970c69fbdd35d906
   Banks:
-  - {fileID: 114673212069902640}
+  - {fileID: 114730353190107976}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -222,7 +252,7 @@ MonoBehaviour:
   Path: event:/PlanetAmbient
   guid: ad2dd97e75504a4db6794fba97798d9a
   Banks:
-  - {fileID: 114673212069902640}
+  - {fileID: 114730353190107976}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -244,7 +274,7 @@ MonoBehaviour:
   Path: event:/Catch Satellite
   guid: c0393ccd7b845741ac399632db1e0152
   Banks:
-  - {fileID: 114673212069902640}
+  - {fileID: 114730353190107976}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -297,6 +327,21 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114660401116029080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: isFloating
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114673212069902640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,7 +360,7 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 8176128
-  Exists: 1
+  Exists: 0
 --- !u!114 &114685762364580986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,12 +375,12 @@ MonoBehaviour:
   Path: event:/Jetpack Hover
   guid: 3982e6ca496c2147a28a2748773a1a51
   Banks:
-  - {fileID: 114673212069902640}
+  - {fileID: 114730353190107976}
   IsStream: 1
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 114558990426552932}
+  - {fileID: 114660401116029080}
   MinDistance: 1
   MaxDistance: 20
   Length: 0
@@ -353,7 +398,7 @@ MonoBehaviour:
   Path: event:/Footsteps
   guid: cb0c5355f0f59f40bb19b66671be0867
   Banks:
-  - {fileID: 114673212069902640}
+  - {fileID: 114730353190107976}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -361,6 +406,25 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 260
+--- !u!114 &114730353190107976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Laptop\Documents\Git\SmallSteps\Small Steps\Assets\FMOD\Project\Build\Desktop\Master
+    Bank.bank
+  lastModified: 636640079027357160
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 8176128
+  Exists: 1
 --- !u!114 &114736545495691470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,7 +437,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: Assets\FMOD\Project\Build\Desktop\Master Bank.strings.bank
-  lastModified: 636639856907681364
+  lastModified: 636640079026619131
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -393,7 +457,7 @@ MonoBehaviour:
   Path: event:/Net Charge
   guid: e31cb50b42389b46acff8c8e1647c51d
   Banks:
-  - {fileID: 114673212069902640}
+  - {fileID: 114730353190107976}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -415,7 +479,7 @@ MonoBehaviour:
   Path: event:/Menu Quit Game
   guid: 948d171e6dfe504daf24e60a9fb6c825
   Banks:
-  - {fileID: 114673212069902640}
+  - {fileID: 114730353190107976}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -437,7 +501,7 @@ MonoBehaviour:
   Path: event:/GroundEnemy
   guid: 4b442896a957604891d8745034b74d10
   Banks:
-  - {fileID: 114673212069902640}
+  - {fileID: 114730353190107976}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -459,7 +523,7 @@ MonoBehaviour:
   Path: event:/Net Swing
   guid: 55461e5d32aa5a488ae8ae075de9aacc
   Banks:
-  - {fileID: 114673212069902640}
+  - {fileID: 114730353190107976}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -481,12 +545,12 @@ MonoBehaviour:
   Path: event:/Music and Ambient
   guid: 3cc3221f9bea424e84ffb693715d9db2
   Banks:
-  - {fileID: 114673212069902640}
+  - {fileID: 114730353190107976}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 114885408663433424}
+  - {fileID: 114175753708275906}
   MinDistance: 1
   MaxDistance: 20
   Length: 181800
@@ -504,7 +568,7 @@ MonoBehaviour:
   Path: event:/PlayerTakeDamage
   guid: 26efdb1e01e28d46906f83a053be5d53
   Banks:
-  - {fileID: 114673212069902640}
+  - {fileID: 114730353190107976}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -541,7 +605,7 @@ MonoBehaviour:
   Path: event:/GroundEnemyAttackHit
   guid: 40fc450eb8d03449b4517e540de24e50
   Banks:
-  - {fileID: 114673212069902640}
+  - {fileID: 114730353190107976}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -563,7 +627,7 @@ MonoBehaviour:
   Path: event:/Jump
   guid: 1c2b01c811c17648a4f8c52cfecd2120
   Banks:
-  - {fileID: 114673212069902640}
+  - {fileID: 114730353190107976}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
