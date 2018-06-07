@@ -6,7 +6,8 @@ using System.Collections;
  */
 [RequireComponent(typeof(SuperCharacterController))]
 [RequireComponent(typeof(PlayerInputController))]
-public class PlayerMachine : SuperStateMachine {
+public class PlayerMachine : SuperStateMachine
+{
 
     [FMODUnity.EventRef] public string chargeSound, swingSound, burstSound, floatSound, walkSound;
     FMOD.Studio.EventInstance floatSoundEI, walkSoundEI;
@@ -53,7 +54,7 @@ public class PlayerMachine : SuperStateMachine {
 
     public bool IsAttacking
     {
-        get {return attacking; }
+        get { return attacking; }
         set
         {
             attacking = value;
@@ -74,33 +75,34 @@ public class PlayerMachine : SuperStateMachine {
         get { return health.isAlive(); }
     }
 
-    
+
     void Awake()
     {
         health = new Health(maxHealth);
-        
+
     }
 
-	void Start () {
-	    // Put any code here you want to run ONCE, when the object is initialized
+    void Start()
+    {
+        // Put any code here you want to run ONCE, when the object is initialized
 
         input = gameObject.GetComponent<PlayerInputController>();
 
         // Grab the controller object from our object
         controller = gameObject.GetComponent<SuperCharacterController>();
-		
-		// Our character's current facing direction, planar to the ground
+
+        // Our character's current facing direction, planar to the ground
         lookDirection = transform.forward;
 
         // Set our currentState to idle on startup
         currentState = PlayerStates.Idle;
         netCatcher = GetComponentInChildren<NetCatcher>();
-        if(!planet)
+        if (!planet)
         {
             var temp = GetComponentInChildren<Gravity>();
             planet = temp.planet;
         }
-	}
+    }
 
 
     void PlayCharge()
@@ -121,10 +123,12 @@ public class PlayerMachine : SuperStateMachine {
 
         if (health.isAlive())
         {
+
             FMODUnity.RuntimeManager.PlayOneShot(damageSound, transform.position);
+            health.TakeDamage(dmgValue);
+            anim.SetTrigger("damage");
         }
 
-        health.TakeDamage(dmgValue);
         Debug.LogWarning("THE PLAYER IS GETTING HIT OUCH PAIN! Health is:" + health.CurrentHealth);
 
         if (takeDamageParticles)
@@ -143,21 +147,22 @@ public class PlayerMachine : SuperStateMachine {
 
     }
     void DIE()
-	{
-		//Play dead animation
-		if (!destroying)
-		{
-			if (deathSound != "")
-				FMODUnity.RuntimeManager.PlayOneShot(deathSound, transform.position);
-			destroying = true;
-		}
+    {
+        //Play dead animation
+        if (!destroying)
+        {
+            if (deathSound != "")
+                FMODUnity.RuntimeManager.PlayOneShot(deathSound, transform.position);
+            anim.SetTrigger("death");
+            destroying = true;
+        }
 
-	}
+    }
 
 
     protected override void EarlyGlobalSuperUpdate()
     {
-		// Rotate out facing direction horizontally based on mouse input
+        // Rotate out facing direction horizontally based on mouse input
         lookDirection = Quaternion.AngleAxis(input.Current.RotInput.x * RotSpeed * 100f * Time.deltaTime, controller.up) * lookDirection;
         // Put any code in here you want to run BEFORE the state's update function.
         // This is run regardless of what state you're in
@@ -170,13 +175,13 @@ public class PlayerMachine : SuperStateMachine {
                 {
                     FMODUnity.RuntimeManager.PlayOneShotAttached(chargeSound, this.gameObject);
                     anim.SetBool("charge", true);
-                    
+
                 }
             }
             else if (!input.Current.AttackInput && anim.GetBool("charge"))
             {
                 anim.SetBool("charge", false);
-                
+
                 if (!IsAttacking)
                 {
                     FMODUnity.RuntimeManager.PlayOneShotAttached(swingSound, this.gameObject);
@@ -246,7 +251,7 @@ public class PlayerMachine : SuperStateMachine {
         return Mathf.Sqrt(2 * jumpHeight * gravity);
     }
 
-	/*void Update () {
+    /*void Update () {
 	 * Update is normally run once on every frame update. We won't be using it
      * in this case, since the SuperCharacterController component sends a callback Update 
      * called SuperUpdate. SuperUpdate is recieved by the SuperStateMachine, and then fires
@@ -258,18 +263,23 @@ public class PlayerMachine : SuperStateMachine {
     // Jump_SuperUpdate()
     void Idle_EnterState()
     {
+
         controller.EnableSlopeLimit();
         controller.EnableClamping();
         if (!dirtParticles.isEmitting)
             dirtParticles.Play();
-                
+
+        anim.SetBool("idle", true);
+        anim.SetBool("isMoving", false);
+        anim.SetBool("isGrounded", true);
+
     }
 
     void Idle_SuperUpdate()
     {
         // Run every frame we are in the idle state
         floatSoundEI.setParameterValue("isFloating", 0);
-        
+
         if (jetpackParticles.isPlaying)
             jetpackParticles.Stop();
 
@@ -278,7 +288,7 @@ public class PlayerMachine : SuperStateMachine {
 
         if (!input.Current.JumpInput)
             prevJumpInput = false;
-        
+
 
         if (input.Current.JumpInput && !prevJumpInput)
         {
@@ -307,7 +317,9 @@ public class PlayerMachine : SuperStateMachine {
         // Run once when we exit the idle state
         if (!dirtParticles.isEmitting)
             dirtParticles.Play();
-                
+        anim.SetBool("idle", false);
+        anim.SetBool("isMoving", true);
+
     }
 
     void Walk_SuperUpdate()
@@ -330,9 +342,9 @@ public class PlayerMachine : SuperStateMachine {
 
         if (!input.Current.JumpInput)
         {
-            prevJumpInput = false;            
+            prevJumpInput = false;
         }
-            
+
         if (input.Current.JumpInput && !prevJumpInput)
         {
             currentState = PlayerStates.Jump;
@@ -362,6 +374,7 @@ public class PlayerMachine : SuperStateMachine {
         controller.DisableSlopeLimit();
         doubleJumped = false;
         prevJumpInput = true;
+        anim.SetBool("isGrounded", false);
 
         moveDirection += controller.up * CalculateJumpSpeed(JumpHeight, Gravity);
     }
@@ -381,37 +394,46 @@ public class PlayerMachine : SuperStateMachine {
                     FMODUnity.RuntimeManager.PlayOneShotAttached(burstSound, this.gameObject);
                     doubleJumped = true;
                     // prevJumpInput = true;
+                    anim.SetTrigger("startJetpack");
                     if (!jetpackParticles.isPlaying)
                         jetpackParticles.Play();
                     moveDirection += controller.up * CalculateJumpSpeed(JumpHeight, Gravity);
                 }
                 // Debug.Log("Double jump hover thingy?");
                 //Just hover maybe?!?!?!?
+                anim.SetBool("jetpack", true);
 
                 FMOD.Studio.PLAYBACK_STATE playbackState;
                 floatSoundEI.getPlaybackState(out playbackState);
                 if (!floatSoundEI.isValid() || playbackState == FMOD.Studio.PLAYBACK_STATE.STOPPED)
                 {
                     Debug.Log(playbackState + ", isValid: " + floatSoundEI.isValid());
-		            floatSoundEI = FMODUnity.RuntimeManager.CreateInstance(floatSound);
+                    floatSoundEI = FMODUnity.RuntimeManager.CreateInstance(floatSound);
                     floatSoundEI.setParameterValue("isFloating", 1);
-		            floatSoundEI.start();
+                    floatSoundEI.start();
 
- 			        FMODUnity.RuntimeManager.AttachInstanceToGameObject(floatSoundEI, GetComponent<Transform>(), GetComponent<Rigidbody>());
+                    FMODUnity.RuntimeManager.AttachInstanceToGameObject(floatSoundEI, GetComponent<Transform>(), GetComponent<Rigidbody>());
                 }
                 else
                     floatSoundEI.setParameterValue("isFloating", 1);
 
                 if (!jetpackParticles.isPlaying)
                     jetpackParticles.Play();
-                var vertical =(moveDirection - (Math3d.ProjectVectorOnPlane(controller.up, moveDirection))).magnitude;
+                var vertical = (moveDirection - (Math3d.ProjectVectorOnPlane(controller.up, moveDirection))).magnitude;
                 float lastMagnitude = (lastPos - planet.position).magnitude;
                 float currentMagnitude = (currentPos - planet.position).magnitude;
-                if (lastMagnitude > currentMagnitude && vertical >3f)
-                    moveDirection += controller.up * CalculateJumpSpeed(Time.deltaTime*0.25f, Gravity);
-                     
+                if (lastMagnitude > currentMagnitude && vertical > 3f)
+                {
+                    moveDirection += controller.up * CalculateJumpSpeed(Time.deltaTime * 0.25f, Gravity);
+                    anim.SetFloat("speedY", -1);
+                }
+                else
+                {
+                    anim.SetFloat("speedY", 1);
+                }
+
             }
-            
+
         }
         Vector3 planarMoveDirection = Math3d.ProjectVectorOnPlane(controller.up, moveDirection);
         Vector3 verticalMoveDirection = moveDirection - planarMoveDirection;
@@ -421,23 +443,24 @@ public class PlayerMachine : SuperStateMachine {
             moveDirection = planarMoveDirection;
             currentState = PlayerStates.Idle;
             prevJumpInput = true;
-            
-            return;            
+
+            return;
         }
         if (!input.Current.JumpInput)
         {
             floatSoundEI.setParameterValue("isFloating", 0);
             jetpackParticles.Stop();
             prevJumpInput = false;
-            
+            anim.SetBool("jetpack", false);
+
         }
-       
+
 
         planarMoveDirection = Vector3.MoveTowards(planarMoveDirection, LocalMovement() * WalkSpeed, JumpAcceleration * controller.deltaTime);
         verticalMoveDirection -= controller.up * Gravity * controller.deltaTime;
 
         moveDirection = planarMoveDirection + verticalMoveDirection;
-        
+
     }
 
     void Fall_EnterState()
@@ -459,6 +482,7 @@ public class PlayerMachine : SuperStateMachine {
 
             moveDirection = Math3d.ProjectVectorOnPlane(controller.up, moveDirection);
             currentState = PlayerStates.Idle;
+            anim.SetBool("isGrounded", true);
             prevJumpInput = true;
             return;
         }

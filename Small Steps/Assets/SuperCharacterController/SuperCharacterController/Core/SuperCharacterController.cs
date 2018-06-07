@@ -200,6 +200,9 @@ public class SuperCharacterController : MonoBehaviour
                 SingleUpdate();
             }
         }
+
+        
+        
     }
 
     public void ManualUpdate(float deltaTime)

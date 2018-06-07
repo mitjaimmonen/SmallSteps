@@ -40,7 +40,7 @@ public class HudHandler : MonoBehaviour
 
         scoreText.text = gameMaster.scoreManager.GetScore().ToString("f0");
         waveInfoText.text = "Wave: " + (gameMaster.WaveNumberForScore() + 1);
-        waveTimeText.text = "Bonus: " + gameMaster.waveManager.WaveTimeLeft().ToString("f0");
+        waveTimeText.text = "Bonus: " + gameMaster.waveManager.WaveTimeLeft().ToString("f0");       
         caughtSatellitesText.text = gameMaster.waveManager.satsCaught.ToString() + "/" + gameMaster.waveManager.currentWave.totalSattelitestoSpawn.ToString();
 
 
