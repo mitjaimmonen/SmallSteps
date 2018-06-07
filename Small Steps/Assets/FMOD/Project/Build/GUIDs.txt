@@ -15,6 +15,7 @@
 {c0fe645d-edbf-40f7-be1e-827eafd7345e} event:/Round Won
 {21714208-9fd5-4a0e-b8f2-5cc043184a17} event:/Satellite random sounds
 {7ed92dad-5075-4d4a-b679-4fba97798d9a} event:/PlanetAmbient
+{9628444b-57a9-4860-91d8-745034b74d10} event:/GroundEnemy
 {c24a7615-e399-4e15-9b0e-c45df70b3268} bus:/
 {239e2e02-8323-48fa-93ac-3fb26ddea6bc} bus:/Reverb
 {bc0d2c16-b47a-4136-88d5-4d633002ecc7} bank:/Master Bank

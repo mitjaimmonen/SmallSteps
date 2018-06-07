@@ -30,9 +30,10 @@ MonoBehaviour:
   - {fileID: 114666358905483070}
   - {fileID: 114502197875615068}
   - {fileID: 114540864155740880}
+  - {fileID: 114174847456529958}
   MasterBankRef: {fileID: 114786610845374552}
   StringsBankRef: {fileID: 114961850487275658}
-  stringsBankWriteTime: 636639751643152641
+  stringsBankWriteTime: 636639773702248367
   cacheVersion: 2
 --- !u!114 &114012393546716302
 MonoBehaviour:
@@ -101,6 +102,21 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114083228383448034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: isGame
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114084701271681098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +162,28 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114174847456529958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/GroundEnemy
+  guid: 4b442896a957604891d8745034b74d10
+  Banks:
+  - {fileID: 114786610845374552}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 13374
 --- !u!114 &114241480877194624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,7 +233,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 114782687226731278}
+  - {fileID: 114083228383448034}
   MinDistance: 1
   MaxDistance: 20
   Length: 181800
@@ -211,6 +249,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: isFloating
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114263949653753198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: isGame
   Min: 0
   Max: 1
   Default: 0
@@ -233,7 +286,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 114093331720981528}
+  - {fileID: 114549067403194142}
   MinDistance: 1
   MaxDistance: 20
   Length: 0
@@ -467,6 +520,21 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114468188379097460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: isFloating
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114502197875615068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -486,10 +554,10 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 114789978110255826}
+  - {fileID: 114858850773525562}
   MinDistance: 1
   MaxDistance: 20
-  Length: 295834
+  Length: 296665
 --- !u!114 &114540864155740880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,6 +580,21 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 50
   Length: 42000
+--- !u!114 &114549067403194142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: isFloating
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114551100106912932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,6 +641,21 @@ MonoBehaviour:
   Max: 1
   Default: 0
 --- !u!114 &114576054839739238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: isGame
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114620448523849840
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -624,6 +722,21 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 260
+--- !u!114 &114676989781217112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: isFloating
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114677388009127460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -843,11 +956,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: C:\Users\Laptop\Documents\Git\SmallSteps\SmallSteps\Small Steps\Assets\FMOD\Project\Build\Desktop\Master
     Bank.bank
-  lastModified: 636639751643123088
+  lastModified: 636639773702198465
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 8012768
+    Value: 8128928
   Exists: 1
 --- !u!114 &114789978110255826
 MonoBehaviour:
@@ -909,6 +1022,51 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114855407260605450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: isGame
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114858850773525562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: isGame
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114871330528813094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: isFloating
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114896251971404518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -921,6 +1079,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: isFloating
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114913587465911624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: isGame
   Min: 0
   Max: 1
   Default: 0
@@ -962,6 +1135,21 @@ MonoBehaviour:
   Max: 1
   Default: 0
 --- !u!114 &114948705946928326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: isGame
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114952233059676638
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1047,12 +1235,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: Assets\FMOD\Project\Build\Desktop\Master Bank.strings.bank
-  lastModified: 636639751643152641
+  lastModified: 636639773702248367
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1392
+    Value: 1434
   Exists: 1
+--- !u!114 &114977204711367308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: isGame
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114997155660701276
 MonoBehaviour:
   m_ObjectHideFlags: 0
