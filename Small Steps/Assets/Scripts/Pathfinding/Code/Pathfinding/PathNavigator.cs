@@ -14,7 +14,7 @@ public class PathNavigator : MonoBehaviour
     public float moveSpeed = 2;
     public float lookSpeed = 2;
     public float attackRange = 0.5f;
-    public float searchTimer =0.3f;
+    public float searchTimer = 0.3f;
     Vector3[] path;
     int targetIndex;
 
@@ -39,15 +39,15 @@ public class PathNavigator : MonoBehaviour
 
     void Update()
     {
-        ControlTurnSpeed();
+        ControlSpeed();
 
-        if (searchTimer >= 0.1f && groundCheck.isReachable)
+        if (searchTimer >= 0.1f && CanFind())
         {
             searchTimer = 0;
             // if the target position has moved
             if (target != null && !attacking)
             {
-                if (groundCheck.isReachable)
+                if (CanFind())
                 {
                     float targetPosDiff = Vector3.Distance(prevTargetPos, target.position);
 
@@ -68,7 +68,7 @@ public class PathNavigator : MonoBehaviour
 
             }
 
-            if (!travelling && !attacking && groundCheck.isReachable) // if the navigator has finished travelling
+            if (!travelling && !attacking && CanFind()) // if the navigator has finished travelling
             {
                 Vector3 targetPos = Vector3.zero;
                 if (target != null) targetPos = target.position;
@@ -84,13 +84,22 @@ public class PathNavigator : MonoBehaviour
                     PathRequestManager.RequestPath(transform.position, targetPos, OnPathFound);
                 }
             }
-            
+
         }
         else
         {
-            searchTimer += Time.deltaTime;
-            travelling = true;
-            PathRequestManager.RequestPath(transform.position, prevTargetPos, OnPathFound);
+            if (target != null && !attacking)
+            {
+                searchTimer += Time.deltaTime;
+                travelling = true;
+                PathRequestManager.RequestPath(transform.position, prevTargetPos, OnPathFound);
+            }
+
+            if (!travelling)
+            {
+                travelling = false;
+
+            }
         }
 
         if (travelling && !dirtParticles.isPlaying)
@@ -100,21 +109,27 @@ public class PathNavigator : MonoBehaviour
 
 
     }
-    public void ControlTurnSpeed()
+    public void ControlSpeed()
     {
-        if (groundCheck.isReachable)
+        if (groundCheck.isReachable && groundCheck.grounded)
         {
             lookSpeed = 2;
+            moveSpeed = 5;
         }
         else
         {
+            moveSpeed = 2;
             lookSpeed = 1f;
         }
     }
 
-    public void CanFind()
+    public bool CanFind()
     {
-
+        //if (!groundCheck.isReachable && !groundCheck.grounded)
+        //    return false;
+        //else
+        //    return true;
+        return groundCheck.isReachable;
     }
 
     #endregion

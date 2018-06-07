@@ -73,12 +73,7 @@ public class SphericalGrid : MonoBehaviour
 	[HideInInspector]
 	public int maxSize;
 
-
-
-	// *************************
-	//          BAKING
-	// *************************
-
+    
 	public void RemoveNodes()
 	{
 		Debug.Log ("RemoveNodes");

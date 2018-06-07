@@ -195,6 +195,7 @@ GameObject:
   - component: {fileID: 135682968977803638}
   - component: {fileID: 114820155958914542}
   - component: {fileID: 114873561551757830}
+  - component: {fileID: 114879840782071224}
   m_Layer: 9
   m_Name: Planet
   m_TagString: Walkable
@@ -287,8 +288,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4671796712670096}
   - component: {fileID: 95280063037739288}
-  - component: {fileID: 64116090319852574}
-  - component: {fileID: 114340051847376730}
   m_Layer: 9
   m_Name: Planet Platforms
   m_TagString: NotWalkable
@@ -341,7 +340,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1634729269935256}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 40, y: 40, z: 40}
   m_Children:
@@ -349,7 +348,7 @@ Transform:
   - {fileID: 4671796712670096}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &4252260462604970
 Transform:
   m_ObjectHideFlags: 1
@@ -1119,20 +1118,6 @@ MeshCollider:
   m_CookingOptions: -1
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 064ceedce5ee5a340bc2ed2f057cfa86, type: 3}
---- !u!64 &64116090319852574
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1940952613047724}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: -1
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 0}
 --- !u!64 &64231325349548198
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -1253,7 +1238,7 @@ MeshCollider:
   m_GameObject: {fileID: 1634729269935256}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
@@ -1377,18 +1362,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drawMeshTreeOnStart: 0
---- !u!114 &114340051847376730
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1940952613047724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a5a6afaf80069348aa068ae586fb3ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  drawMeshTreeOnStart: 0
 --- !u!114 &114394679533871362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1484,8 +1457,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e5d36999e6ed584cbc7c9340d004e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetTransform: {fileID: 0}
+  planetTransform: {fileID: 4176250864538280}
   planetRadius: 20
+--- !u!114 &114879840782071224
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1634729269935256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: event:/PlanetAmbient
+  PlayEvent: 11
+  StopEvent: 12
+  CollisionTag: 
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 50
 --- !u!114 &114889195015944852
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1506,7 +1501,7 @@ SphereCollider:
   m_GameObject: {fileID: 1634729269935256}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5021633
   m_Center: {x: 0.000000029802322, y: 9.994989e-19, z: 0.00014066693}
