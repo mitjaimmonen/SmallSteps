@@ -122,6 +122,7 @@ public class PlayerMachine : SuperStateMachine {
         }
 
         health.TakeDamage(dmgValue);
+        Debug.LogWarning("THE PLAYER IS GETTING HIT OUCH PAIN! Health is:" + health.CurrentHealth);
 
         if (takeDamageParticles)
         {

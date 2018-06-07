@@ -13,7 +13,7 @@ public class PathNavigator : MonoBehaviour
     public float moveSpeed = 2;
     public float lookSpeed = 2;
     public float attackRange = 0.5f;
-
+    public float searchTimer =0.3f;
     Vector3[] path;
     int targetIndex;
 
@@ -38,47 +38,76 @@ public class PathNavigator : MonoBehaviour
 
     void Update()
     {
+        ControlTurnSpeed();
 
-        // if the target position has moved
-        if (target != null && !attacking)
+        if (searchTimer >= 0.1f && groundCheck.isReachable)
         {
-            if (groundCheck.isReachable)
+            searchTimer = 0;
+            // if the target position has moved
+            if (target != null && !attacking)
             {
-                float targetPosDiff = Vector3.Distance(prevTargetPos, target.position);
-
-                if (targetPosDiff > 0.01f)
+                if (groundCheck.isReachable)
                 {
-                    travelling = true;
-                    PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+                    float targetPosDiff = Vector3.Distance(prevTargetPos, target.position);
+
+                    if (targetPosDiff > 0.01f)
+                    {
+                        travelling = true;
+                        PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+                    }
+
+                    prevTargetPos = target.position;
                 }
 
-                prevTargetPos = target.position;
+                else
+                {
+                    travelling = true;
+                    PathRequestManager.RequestPath(transform.position, prevTargetPos, OnPathFound);
+                }
+
             }
 
-            else
+            if (!travelling && !attacking && groundCheck.isReachable) // if the navigator has finished travelling
             {
-                travelling = true;
-                PathRequestManager.RequestPath(transform.position, prevTargetPos, OnPathFound);
+                Vector3 targetPos = Vector3.zero;
+                if (target != null) targetPos = target.position;
+                else targetPos = RandomTargetPos();
+
+                // check the distance to its target position, if it's far away start navigating again
+                float dist = sphericalGrid.GetSphericalDistance(transform.position, targetPos);
+
+
+                if (dist > 0.1f && !attacking)
+                {
+                    travelling = true;
+                    PathRequestManager.RequestPath(transform.position, targetPos, OnPathFound);
+                }
             }
-
+            
         }
-
-        if (!travelling && !attacking && groundCheck.isReachable) // if the navigator has finished travelling
+        else
         {
-            Vector3 targetPos = Vector3.zero;
-            if (target != null) targetPos = target.position;
-            else targetPos = RandomTargetPos();
-
-            // check the distance to its target position, if it's far away start navigating again
-            float dist = sphericalGrid.GetSphericalDistance(transform.position, targetPos);
-
-
-            if (dist > 0.1f && !attacking)
-            {
-                travelling = true;
-                PathRequestManager.RequestPath(transform.position, targetPos, OnPathFound);
-            }
+            searchTimer += Time.deltaTime;
+            travelling = true;
+            PathRequestManager.RequestPath(transform.position, prevTargetPos, OnPathFound);
         }
+
+
+    }
+    public void ControlTurnSpeed()
+    {
+        if (groundCheck.isReachable)
+        {
+            lookSpeed = 2;
+        }
+        else
+        {
+            lookSpeed = 1f;
+        }
+    }
+
+    public void CanFind()
+    {
 
     }
 

@@ -10,17 +10,21 @@ public class Satellite : MonoBehaviour
     public Vector3 axis;
     public Vector3 desiredPosition;
     public LevelManager levelManager;
-    public float scoreValue = 376.3f;
-    public float radius = 2.0f;
+    public float scoreValue = 9;
+    public float planetRadius;
+    public float spawnRangemin;
+    public float spawnRangemax;
+    public float radius;
     public float radiusSpeed = 0.5f;
     public float rotationSpeed = 80.0f;
 
     void Start()
     {
         center = planet.transform;
+        axis = RandomDirection();
+        radius = RandomRadius();
         transform.position = (transform.position - center.position).normalized * radius + center.position;
 
-        axis = RandomDirection();
 
 
     }
@@ -30,6 +34,13 @@ public class Satellite : MonoBehaviour
         transform.RotateAround(center.position, axis, rotationSpeed * Time.deltaTime);
         desiredPosition = (transform.position - center.position).normalized * radius + center.position;
         transform.position = Vector3.MoveTowards(transform.position, desiredPosition, Time.deltaTime * radiusSpeed);
+    }
+
+    private float RandomRadius()
+    {        
+        float radiusModifier = Random.Range(spawnRangemin, spawnRangemax);
+
+        return planetRadius + radiusModifier;
     }
 
     private Vector3 RandomDirection()

@@ -203,7 +203,7 @@ public class SphericalGridEditor : Editor
 					
 					EditorUtility.ClearProgressBar();
 
-					EditorUtility.UnloadUnusedAssets();
+					EditorUtility.UnloadUnusedAssetsImmediate();
 					Resources.UnloadUnusedAssets();
 					System.GC.Collect();
 

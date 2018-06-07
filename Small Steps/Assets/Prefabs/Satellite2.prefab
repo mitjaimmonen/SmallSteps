@@ -191,6 +191,9 @@ MonoBehaviour:
   desiredPosition: {x: 0, y: 0, z: 0}
   levelManager: {fileID: 0}
   scoreValue: 376.3
+  planetRadius: 20
+  spawnRangemin: 4
+  spawnRangemax: 12
   radius: 25
   radiusSpeed: 20
   rotationSpeed: 40
