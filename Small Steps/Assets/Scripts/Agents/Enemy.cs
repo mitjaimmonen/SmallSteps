@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 
     PathNavigator pathFinder;
     bool isAttacking;
+    bool hitting;
     public Animator tentacleAnimator;
 
 
@@ -28,6 +29,12 @@ public class Enemy : MonoBehaviour
         {
             StartCoroutine(AttackRoutine());
         }
+
+        if (other.gameObject.tag == "Player" && hitting)
+        {
+            hitting = false;
+            other.GetComponentInParent<PlayerMachine>().GetHit(1);
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -36,7 +43,22 @@ public class Enemy : MonoBehaviour
         {
             StartCoroutine(AttackRoutine());
         }
+
+        if (other.gameObject.tag == "Player" && hitting)
+        {
+            hitting = false;
+            other.GetComponentInParent<PlayerMachine>().GetHit(1);
+        }
+
     }
+
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.gameObject.tag == "Player" && hitting)
+    //    {
+    //        other.GetComponent<PlayerMachine>().GetHit(1);
+    //    }
+    //}
 
     private void RotateToTarget()
     {
@@ -51,11 +73,12 @@ public class Enemy : MonoBehaviour
         pathFinder.SetAttacking(true);
         tentacleAnimator.SetTrigger("Attack");
         isAttacking = true;
-        yield return new WaitForSeconds(tentacleAnimator.GetCurrentAnimatorStateInfo(0).length);
-
+        yield return new WaitForSeconds(tentacleAnimator.GetCurrentAnimatorStateInfo(0).length/2);
+        hitting = true;
+        yield return new WaitForSeconds(tentacleAnimator.GetCurrentAnimatorStateInfo(0).length / 2);
         pathFinder.SetAttacking(false);
-
         isAttacking = false;
+        hitting = false;
 
 
     }

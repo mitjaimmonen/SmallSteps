@@ -52,7 +52,7 @@ public class LevelManager : MonoBehaviour
 
     public void OnSatelitteCaught(float scoreValue)
     {
-        scoreManager.AddToScore(scoreValue);
+        scoreManager.AddToScore(scoreValue, waveManager.WaveTimeLeft());
         waveManager.satsCaught++;
     }
 

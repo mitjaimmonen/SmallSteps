@@ -33,7 +33,7 @@ public class WaveManager : MonoBehaviour
     public float WaveTimeLeft()
     {
         return Mathf.Max(0, currentWave.maxWaveTimer - timerCounter);
-    }
+    }    
 
     public bool WithinTimer()
     {

@@ -12,9 +12,9 @@ public class ScoreManager : MonoBehaviour {
         return currentScore;
     }
 
-    public void AddToScore(float value)
+    public void AddToScore(float value, float timeMod)
     {
-        currentScore += value;
+        currentScore += value + 8 * timeMod;
     }
 
     public void ClearScore()
