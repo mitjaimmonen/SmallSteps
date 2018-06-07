@@ -793,7 +793,7 @@ MonoBehaviour:
   Gravity: 25
   deathSound: 
   damageSound: 
-  maxHealth: 100
+  maxHealth: 5
   takeDamageParticles: {fileID: 0}
 --- !u!114 &114589669205850768
 MonoBehaviour:
@@ -807,6 +807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isReachable: 0
+  grounded: 0
 --- !u!114 &114669853778934754
 MonoBehaviour:
   m_ObjectHideFlags: 1
