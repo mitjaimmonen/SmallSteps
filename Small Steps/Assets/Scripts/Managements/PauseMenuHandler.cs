@@ -8,6 +8,8 @@ using XInputDotNetPure;
 public class PauseMenuHandler : MonoBehaviour
 {
 
+    public LevelManager gameMaster;
+    public Text scoreText;
     public GameObject Container;
     public Button resumeBtn;
     public Button mainMenuBtn;
@@ -28,22 +30,26 @@ public class PauseMenuHandler : MonoBehaviour
         input.pauseMenuHandler = this;
 
         Container.SetActive(false);
+        scoreText.gameObject.SetActive(false);
     }
 
     void Update()
     {
-        if (player.CurrentHealth < 0)
+        Debug.Log(EventSystem.current.currentSelectedGameObject);       
+        if (player.CurrentHealth <= 0)
         {
             Debug.Log("Dead");
             Container.SetActive(true);
             isPaused = Container.activeSelf;
+            scoreText.text = "Score: " + gameMaster.scoreManager.GetScore().ToString("f0");
+            scoreText.gameObject.SetActive(true);
+            Time.timeScale = 0;
             resumeBtn.gameObject.SetActive(false);
             if (EventSystem.current.currentSelectedGameObject == null || EventSystem.current.currentSelectedGameObject == resumeBtn.gameObject)
                 EventSystem.current.SetSelectedGameObject(mainMenuBtn.gameObject);
         }
         else
         {
-            resumeBtn.gameObject.SetActive(true);
             if (EventSystem.current.currentSelectedGameObject == null)
                 EventSystem.current.SetSelectedGameObject(resumeBtn.gameObject);
         }
@@ -57,8 +63,10 @@ public class PauseMenuHandler : MonoBehaviour
             {
                 pause = true;
                 Container.SetActive(!Container.activeSelf);
+                resumeBtn.gameObject.SetActive(true);
                 isPaused = Container.activeSelf;                
-                
+                EventSystem.current.SetSelectedGameObject(null);
+                EventSystem.current.SetSelectedGameObject(resumeBtn.gameObject);
                 Time.timeScale = 0;
               
             }
@@ -73,7 +81,7 @@ public class PauseMenuHandler : MonoBehaviour
 
     public void ChangeScene(string name)
     {
-        Time.timeScale = 1;        
+        Time.timeScale = 1;
         SceneManager.LoadScene(name);
     }
     public void ResumeGame()

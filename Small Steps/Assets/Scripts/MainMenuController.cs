@@ -18,7 +18,8 @@ public class MainMenuController : MonoBehaviour {
 	{
 		if (!anim)
 			anim = GetComponentInChildren<Animator>();
-
+        
+		Time.timeScale = 1;
 		cameraTrans = GameObject.Find("Main Camera").transform;
 	}
 	void Update()

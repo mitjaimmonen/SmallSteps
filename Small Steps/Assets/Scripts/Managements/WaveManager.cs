@@ -122,7 +122,7 @@ public class WaveManager : MonoBehaviour
             Instantiate(satelitteToSpawn[rand], Random.insideUnitSphere * radius, Quaternion.identity);
             satsSpawnedThisWave++;
             satsSpawnedOverall++;
-            Debug.Log("Spawned: " + satsSpawnedThisWave + ". To spawn: " + SatsToSpawn());
+            // Debug.Log("Spawned: " + satsSpawnedThisWave + ". To spawn: " + SatsToSpawn());
             spawnCounter = 0;
         }
     }
