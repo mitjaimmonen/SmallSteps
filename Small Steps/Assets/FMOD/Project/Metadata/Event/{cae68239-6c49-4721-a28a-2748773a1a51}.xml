@@ -64,6 +64,7 @@
     <object class="GroupTrack" id="{48943e78-99d8-42ad-b79d-5499a858bc97}">
         <relationship name="modules">
             <destination>{6a65f51f-e6c2-4888-bafc-76dd85bb1bbb}</destination>
+            <destination>{b07e74f9-96db-45bd-8f7e-0c096b6b6500}</destination>
         </relationship>
         <relationship name="mixerGroup">
             <destination>{23ba8fb9-ced2-485a-83a9-757c521793b5}</destination>
@@ -73,6 +74,7 @@
     <object class="ParameterProxy" id="{5d461ca7-8966-4821-8bfb-27568b24e6af}">
         <relationship name="modules">
             <destination>{6a65f51f-e6c2-4888-bafc-76dd85bb1bbb}</destination>
+            <destination>{b07e74f9-96db-45bd-8f7e-0c096b6b6500}</destination>
         </relationship>
         <relationship name="preset">
             <destination>{a079d252-d5cd-4593-ba55-e4b01fe34ea1}</destination>
@@ -110,6 +112,20 @@
         </property>
         <relationship name="audioFile">
             <destination>{95319dca-947e-4382-93b2-7789e87ca41b}</destination>
+        </relationship>
+    </object>
+    <object class="SingleSound" id="{b07e74f9-96db-45bd-8f7e-0c096b6b6500}">
+        <property name="isCutoff">
+            <value>true</value>
+        </property>
+        <property name="length">
+            <value>0.10000000000000001</value>
+        </property>
+        <property name="startOffset">
+            <value>17</value>
+        </property>
+        <relationship name="audioFile">
+            <destination>{a184c9fc-f53a-4840-897a-597bec3b466a}</destination>
         </relationship>
     </object>
     <object class="EventMixerGroup" id="{23ba8fb9-ced2-485a-83a9-757c521793b5}">

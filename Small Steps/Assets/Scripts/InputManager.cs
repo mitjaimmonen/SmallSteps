@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using XInputDotNetPure; // Required in C#
 
 public class InputManager : MonoBehaviour {
-		public PlayerInputController playerInput;
+		PlayerInputController playerInput;
         bool playerIndexSet = false;
         PlayerIndex playerIndex;
         GamePadState state;
@@ -25,9 +25,13 @@ public class InputManager : MonoBehaviour {
 	void Start () {
 		if (!playerInput)
         {
-            var go = GameObject.FindGameObjectWithTag("Player");
-            if (go)
-                playerInput = go.GetComponent<PlayerInputController>();
+            var go = GameObject.FindGameObjectsWithTag("Player");
+            foreach (var temp in go)
+            {
+                playerInput = temp.GetComponent<PlayerInputController>();
+                if (playerInput)
+                    break;
+            }
         }
 		SceneManager.sceneLoaded += OnLevelFinishedLoading;
 	}
@@ -36,9 +40,13 @@ public class InputManager : MonoBehaviour {
 	{
         if (!playerInput)
         {
-            var go = GameObject.FindGameObjectWithTag("Player");
-            if (go)
-                playerInput = go.GetComponent<PlayerInputController>();
+            var go = GameObject.FindGameObjectsWithTag("Player");
+            foreach (var temp in go)
+            {
+                playerInput = temp.GetComponent<PlayerInputController>();
+                if (playerInput)
+                    break;
+            }
         }
 	}
 
@@ -64,7 +72,11 @@ public class InputManager : MonoBehaviour {
 
         prevState = state;
         state = GamePad.GetState(playerIndex);
-        playerInput.HandleInput(state, prevState);
+
+        if (playerInput)
+            playerInput.HandleInput(state, prevState);
+        if (pauseMenuHandler)
+            pauseMenuHandler.HandleInput(state, prevState);
         
 
     }

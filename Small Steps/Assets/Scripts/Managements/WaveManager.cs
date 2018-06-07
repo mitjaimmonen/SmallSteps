@@ -9,7 +9,7 @@ public class WaveManager : MonoBehaviour
     public int satsCaught = 0;
     private int satsSpawnedOverall;
     private LevelManager levelBoss;
-    public GameObject satelitteToSpawn;
+    public GameObject[] satelitteToSpawn;
 
     public WaveTemplate currentWave;
 
@@ -28,6 +28,12 @@ public class WaveManager : MonoBehaviour
 
     private float spawnCounter = 0;
     private float timerCounter = 0;
+
+
+    public float WaveTimeLeft()
+    {
+        return Mathf.Max(0, currentWave.maxWaveTimer - timerCounter);
+    }
 
     public bool WithinTimer()
     {
@@ -89,7 +95,7 @@ public class WaveManager : MonoBehaviour
     public void ExecuteWave(GameObject planet, float radius)
     {
         timerCounter += Time.deltaTime;
-        Debug.Log("Spawn Counter: " + spawnCounter);
+        // Debug.Log("Spawn Counter: " + spawnCounter);
 
         if (SatsToSpawn() > 0)
         {
@@ -110,9 +116,10 @@ public class WaveManager : MonoBehaviour
     {
         for (int i = 0; i < value; i++)
         {
-            satelitteToSpawn.GetComponent<Satellite>().planet = _planet;
-            satelitteToSpawn.GetComponent<Satellite>().levelManager = levelBoss;
-            Instantiate(satelitteToSpawn, Random.insideUnitSphere * radius, Quaternion.identity);
+            int rand = Random.Range(0, satelitteToSpawn.Length-1);
+            satelitteToSpawn[rand].GetComponent<Satellite>().planet = _planet;
+            satelitteToSpawn[rand].GetComponent<Satellite>().levelManager = levelBoss;
+            Instantiate(satelitteToSpawn[rand], Random.insideUnitSphere * radius, Quaternion.identity);
             satsSpawnedThisWave++;
             satsSpawnedOverall++;
             Debug.Log("Spawned: " + satsSpawnedThisWave + ". To spawn: " + SatsToSpawn());

@@ -55,8 +55,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   satsSpawnedThisWave: 0
   satsCaught: 0
-  satelitteToSpawn: {fileID: 1141725163350350, guid: 21416affa31c77144a80e39e00a062c7,
-    type: 2}
+  satelitteToSpawn:
+  - {fileID: 1428127105202406, guid: cbd1e781c1982534e8c98f7a5a9470ed, type: 2}
+  - {fileID: 1402421487737616, guid: 3bcb69da53fcb6c45aa31b6ab66c3255, type: 2}
+  - {fileID: 1761431155687054, guid: a6d9efd76ec097e4d9ce8a14a05c3d11, type: 2}
+  - {fileID: 1646500761904690, guid: c8bd662313525094d80bb4579dde83ed, type: 2}
+  - {fileID: 1764396852680164, guid: 5464488f62a17934eba098ffdc432474, type: 2}
   satSpawnModifier: 2
   standardSpawnTime: 1
   standardWaveDuration: 10

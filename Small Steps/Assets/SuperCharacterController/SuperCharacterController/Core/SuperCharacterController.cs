@@ -113,6 +113,8 @@ public class SuperCharacterController : MonoBehaviour
     private int TemporaryLayerIndex;
     private float fixedDeltaTime;
 
+
+
     private static SuperCollisionType defaultCollisionType;
 
     void Awake()
@@ -162,6 +164,7 @@ public class SuperCharacterController : MonoBehaviour
 
         gameObject.SendMessage("SuperStart", SendMessageOptions.DontRequireReceiver);
     }
+
 
     void Update()
     {
