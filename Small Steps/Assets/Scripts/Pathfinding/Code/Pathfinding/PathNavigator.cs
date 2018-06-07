@@ -6,6 +6,7 @@ public class PathNavigator : MonoBehaviour
 {
     public SphericalGrid sphericalGrid;
     public Transform target;
+    public ParticleSystem dirtParticles;
 
     Vector3 prevTargetPos;
     GroundCheck groundCheck;
@@ -100,6 +101,11 @@ public class PathNavigator : MonoBehaviour
 
             }
         }
+
+        if (travelling && !dirtParticles.isPlaying)
+            dirtParticles.Play();
+        if ((!travelling ||attacking) && dirtParticles.isPlaying)
+            dirtParticles.Stop();
 
 
     }

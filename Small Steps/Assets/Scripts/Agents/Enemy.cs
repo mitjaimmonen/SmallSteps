@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
     bool hitting;
     public Animator tentacleAnimator;
 
+    [FMODUnity.EventRef] public string attackSound, hitSound;
+
 
     private void Awake()
     {
@@ -33,6 +35,7 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.tag == "Player" && hitting)
         {
             hitting = false;
+            FMODUnity.RuntimeManager.PlayOneShot(hitSound, other.transform.position);
             other.GetComponentInParent<PlayerMachine>().GetHit(1);
         }
     }
@@ -47,6 +50,7 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.tag == "Player" && hitting)
         {
             hitting = false;
+            FMODUnity.RuntimeManager.PlayOneShot(hitSound, other.transform.position);
             other.GetComponentInParent<PlayerMachine>().GetHit(1);
         }
 
@@ -75,6 +79,7 @@ public class Enemy : MonoBehaviour
         isAttacking = true;
         yield return new WaitForSeconds(tentacleAnimator.GetCurrentAnimatorStateInfo(0).length/2);
         hitting = true;
+        FMODUnity.RuntimeManager.PlayOneShotAttached(attackSound, this.gameObject);
         yield return new WaitForSeconds(tentacleAnimator.GetCurrentAnimatorStateInfo(0).length / 2);
         pathFinder.SetAttacking(false);
         isAttacking = false;

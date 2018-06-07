@@ -12,6 +12,7 @@ public class PlayerMachine : SuperStateMachine {
     FMOD.Studio.EventInstance floatSoundEI, walkSoundEI;
 
     public ParticleSystem jetpackParticles;
+    public ParticleSystem dirtParticles;
     public Transform AnimatedMesh;
     public PlayerCamera playerCamera;
     public Animator anim;
@@ -259,6 +260,9 @@ public class PlayerMachine : SuperStateMachine {
     {
         controller.EnableSlopeLimit();
         controller.EnableClamping();
+        if (!dirtParticles.isEmitting)
+            dirtParticles.Play();
+                
     }
 
     void Idle_SuperUpdate()
@@ -268,6 +272,9 @@ public class PlayerMachine : SuperStateMachine {
         
         if (jetpackParticles.isPlaying)
             jetpackParticles.Stop();
+
+        if (dirtParticles.isEmitting)
+            dirtParticles.Stop();
 
         if (!input.Current.JumpInput)
             prevJumpInput = false;
@@ -298,6 +305,9 @@ public class PlayerMachine : SuperStateMachine {
     void Idle_ExitState()
     {
         // Run once when we exit the idle state
+        if (!dirtParticles.isEmitting)
+            dirtParticles.Play();
+                
     }
 
     void Walk_SuperUpdate()
@@ -315,6 +325,8 @@ public class PlayerMachine : SuperStateMachine {
             FMODUnity.RuntimeManager.AttachInstanceToGameObject(walkSoundEI, transform, GetComponent<Rigidbody>());
             walkSoundEI.start();
         }
+        if (!dirtParticles.isEmitting)
+            dirtParticles.Play();
 
         if (!input.Current.JumpInput)
         {
@@ -356,6 +368,8 @@ public class PlayerMachine : SuperStateMachine {
 
     void Jump_SuperUpdate()
     {
+        if (dirtParticles.isEmitting)
+            dirtParticles.Stop();
         if (input.Current.JumpInput)
         {
             if (input.Current.JumpInput && !prevJumpInput)
@@ -432,6 +446,7 @@ public class PlayerMachine : SuperStateMachine {
         controller.DisableSlopeLimit();
         floatSoundEI.setParameterValue("isFloating", 0);
         prevJumpInput = true;
+
         // moveDirection = trueVelocity;
     }
 
@@ -439,6 +454,9 @@ public class PlayerMachine : SuperStateMachine {
     {
         if (AcquiringGround())
         {
+            if (!dirtParticles.isEmitting)
+                dirtParticles.Play();
+
             moveDirection = Math3d.ProjectVectorOnPlane(controller.up, moveDirection);
             currentState = PlayerStates.Idle;
             prevJumpInput = true;

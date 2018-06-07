@@ -70,7 +70,7 @@ public class WaveManager : MonoBehaviour
         satsSpawnedThisWave = 0;
         timerCounter = 0;
 
-        int sats = Mathf.RoundToInt(waveNum * satSpawnModifier + 3);
+        int sats = Mathf.RoundToInt(waveNum * satSpawnModifier + 5);
         float spawnTime = standardSpawnTime;
         float waveTimer = standardWaveDuration + waveDurationModifier * sats;
 
@@ -122,7 +122,7 @@ public class WaveManager : MonoBehaviour
             Instantiate(satelitteToSpawn[rand], Random.insideUnitSphere * radius, Quaternion.identity);
             satsSpawnedThisWave++;
             satsSpawnedOverall++;
-            Debug.Log("Spawned: " + satsSpawnedThisWave + ". To spawn: " + SatsToSpawn());
+            // Debug.Log("Spawned: " + satsSpawnedThisWave + ". To spawn: " + SatsToSpawn());
             spawnCounter = 0;
         }
     }
