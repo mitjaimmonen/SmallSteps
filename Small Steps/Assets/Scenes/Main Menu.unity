@@ -320,6 +320,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638be2c89a4531a40bfeaa3857e41aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  starGameSound: event:/Menu select item
+  selectionSound: event:/Menu change selection
+  quitGameSound: event:/Menu Quit Game
   overlay: {fileID: 388318164}
   startBtn: {fileID: 379090820}
   anim: {fileID: 355426267}

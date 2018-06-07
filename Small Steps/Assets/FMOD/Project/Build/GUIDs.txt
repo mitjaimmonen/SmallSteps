@@ -8,11 +8,13 @@
 {1e178d94-fe6d-4d50-af24-e60a9fb6c825} event:/Menu Quit Game
 {61a2f70e-c552-4281-8b0c-bd0f3fb656a8} event:/Menu select item
 {1f22c33c-ea9b-4e42-84ff-b693715d9db2} event:/Music and Ambient
+{6b31a42e-7449-4821-98ad-fccf05abb22e} event:/Music and Ambient 2
 {0bb51ce3-3842-469b-acff-8c8e1647c51d} event:/Net Charge
 {5d1e4655-aa32-485a-8ae8-ae075de9aacc} event:/Net Swing
 {59095d0f-2fb0-4ece-98e7-eaf101ee6ad6} event:/Round Lost
 {c0fe645d-edbf-40f7-be1e-827eafd7345e} event:/Round Won
 {21714208-9fd5-4a0e-b8f2-5cc043184a17} event:/Satellite random sounds
+{7ed92dad-5075-4d4a-b679-4fba97798d9a} event:/PlanetAmbient
 {c24a7615-e399-4e15-9b0e-c45df70b3268} bus:/
 {239e2e02-8323-48fa-93ac-3fb26ddea6bc} bus:/Reverb
 {bc0d2c16-b47a-4136-88d5-4d633002ecc7} bank:/Master Bank

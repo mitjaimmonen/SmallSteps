@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 135778795652484144}
   - component: {fileID: 114143779040620792}
   - component: {fileID: 114190680719251918}
+  - component: {fileID: 114050264347163468}
   m_Layer: 12
   m_Name: Satellite2
   m_TagString: Untagged
@@ -174,6 +175,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114050264347163468
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1402421487737616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0e41c6030ceae94cb603791ffba81e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToSpawn: {fileID: 1795150275990832, guid: c0c91c43250ff7248b736435aeb8635e,
+    type: 2}
+  keepDetatched: 1
 --- !u!114 &114143779040620792
 MonoBehaviour:
   m_ObjectHideFlags: 1

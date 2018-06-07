@@ -9,7 +9,6 @@ public class SoundBehaviour : MonoBehaviour {
 	FMOD.Studio.EventInstance musicEI;
 
 	GameObject targetCamera; //Attach music to camera if possible
-	Player player; //make this.transform follow player
 
 	float timer;
 	void Awake()
@@ -18,26 +17,25 @@ public class SoundBehaviour : MonoBehaviour {
 		{
 			Destroy(this.gameObject);
 		}
-
-		DontDestroyOnLoad(this);
-		SceneManager.sceneLoaded += LoadScene;
-
-		targetCamera = GameObject.Find("Main Camera");
-
-		FMOD.Studio.PLAYBACK_STATE playbackState;
-		musicEI.getPlaybackState(out playbackState);
-		if (playbackState == FMOD.Studio.PLAYBACK_STATE.STOPPED)
-		{
-			Debug.Log(playbackState);
-			musicEI = FMODUnity.RuntimeManager.CreateInstance(backgroundMusic);
-			musicEI.start();
-		}
-
-		if (!targetCamera)
- 			FMODUnity.RuntimeManager.AttachInstanceToGameObject(musicEI, GetComponent<Transform>(), GetComponent<Rigidbody>());
 		else
- 			FMODUnity.RuntimeManager.AttachInstanceToGameObject(musicEI, targetCamera.GetComponent<Transform>(), targetCamera.GetComponent<Rigidbody>());
+		{
+			DontDestroyOnLoad(this);
+			SceneManager.sceneLoaded += LoadScene;
 
+			targetCamera = GameObject.Find("Main Camera");
+
+
+			musicEI = FMODUnity.RuntimeManager.CreateInstance(backgroundMusic);
+			musicEI.setParameterValue("isGame", SceneManager.GetActiveScene().buildIndex == 1 ? 0 : 1);
+			
+			musicEI.start();
+			
+
+			if (!targetCamera)
+				FMODUnity.RuntimeManager.AttachInstanceToGameObject(musicEI, GetComponent<Transform>(), GetComponent<Rigidbody>());
+			else
+				FMODUnity.RuntimeManager.AttachInstanceToGameObject(musicEI, targetCamera.GetComponent<Transform>(), targetCamera.GetComponent<Rigidbody>());
+		}
 	}
 	void OnDisable() {
 		SceneManager.sceneLoaded -= LoadScene;
@@ -45,20 +43,13 @@ public class SoundBehaviour : MonoBehaviour {
 
 	public void StartingGame()
 	{
-		Debug.Log("IsGame = 1");
-		musicEI.setParameterValue("isGame", 1);
-		
+		musicEI.setParameterValue("isGame", SceneManager.GetActiveScene().buildIndex == 1 ? 0 : 1);
 	}
 
 	void LoadScene(Scene scene, LoadSceneMode mode)
 	{
 		Debug.Log("Scene Loaded.");
-		targetCamera = GameObject.Find("Main Camera");
-
-		GameObject temp = GameObject.FindGameObjectWithTag("Player");
-		if (temp)
-			player = temp.GetComponentInChildren<Player>();
-		
+		targetCamera = GameObject.Find("Main Camera");		
 		
 		musicEI.setParameterValue("isGame", SceneManager.GetActiveScene().buildIndex == 1 ? 1 : 0);
 
@@ -77,9 +68,9 @@ public class SoundBehaviour : MonoBehaviour {
 	{
 		timer = Time.time;
 
-		if (player)
+		if (targetCamera)
 		{
-			transform.position = player.transform.position;
+			transform.position = targetCamera.transform.position;
 		}
 	}
 }
