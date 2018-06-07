@@ -45,6 +45,7 @@ public class SoundBehaviour : MonoBehaviour {
 
 	public void StartingGame()
 	{
+		Debug.Log("IsGame = 1");
 		musicEI.setParameterValue("isGame", 1);
 		
 	}

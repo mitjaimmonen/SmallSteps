@@ -49,6 +49,7 @@ public class MainMenuController : MonoBehaviour {
 	IEnumerator FadeOut(string levelName)
 	{
 		float time = 0;
+		sound.StartingGame();
 
 		while (time <= 1f)
 		{
@@ -56,7 +57,6 @@ public class MainMenuController : MonoBehaviour {
 			time += Time.deltaTime;
 			yield return null;
 		}
-		sound.StartingGame();
 		SceneManager.LoadScene(levelName);
 
 		yield break;
