@@ -6,25 +6,35 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 public class MainMenuController : MonoBehaviour {
 
+	[FMODUnity.EventRef] public string starGameSound, selectionSound, quitGameSound;
 	public Image overlay;
 	public GameObject startBtn;
 	public Animator anim;
 	public SoundBehaviour sound;
+	GameObject chosenItem;
+	Transform cameraTrans;
 
 	void Awake()
 	{
 		if (!anim)
 			anim = GetComponentInChildren<Animator>();
+
+		cameraTrans = GameObject.Find("Main Camera").transform;
 	}
 	void Update()
 	{
 		if (EventSystem.current.currentSelectedGameObject == null)
 		{
-			EventSystem.current.SetSelectedGameObject(startBtn);
+			chosenItem = startBtn;
 		}
 		if (Input.GetButton("Submit"))
 		{
 			Invoke("SetScrolled", 0.2f);
+		}
+		if (EventSystem.current.currentSelectedGameObject != chosenItem)
+		{
+			FMODUnity.RuntimeManager.PlayOneShot(selectionSound, cameraTrans.position);
+			chosenItem = EventSystem.current.currentSelectedGameObject;
 		}
 	}
 
@@ -42,13 +52,23 @@ public class MainMenuController : MonoBehaviour {
 
 	public void QuitApplication()
 	{
-		if (anim.GetBool("isScrolled"))		
-			Application.Quit();
+		if (anim.GetBool("isScrolled"))	
+		{
+			FMODUnity.RuntimeManager.PlayOneShot(quitGameSound, cameraTrans.position);
+			StartCoroutine(FadeOut(null));
+		}
 	}
 
 	IEnumerator FadeOut(string levelName)
 	{
 		float time = 0;
+		sound = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundBehaviour>();
+
+		if (levelName != null)
+		{
+			sound.StartingGame();
+			FMODUnity.RuntimeManager.PlayOneShot(starGameSound, cameraTrans.position);
+		}
 
 		while (time <= 1f)
 		{
@@ -56,8 +76,10 @@ public class MainMenuController : MonoBehaviour {
 			time += Time.deltaTime;
 			yield return null;
 		}
-		sound.StartingGame();
-		SceneManager.LoadScene(levelName);
+		if (levelName != null)
+			SceneManager.LoadScene(levelName);
+		else
+			Application.Quit();
 
 		yield break;
 	}

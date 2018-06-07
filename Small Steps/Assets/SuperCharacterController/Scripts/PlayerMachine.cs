@@ -10,6 +10,8 @@ public class PlayerMachine : SuperStateMachine {
 
     [FMODUnity.EventRef] public string chargeSound, swingSound, burstSound, floatSound, walkSound;
     FMOD.Studio.EventInstance floatSoundEI, walkSoundEI;
+
+    public ParticleSystem jetpackParticles;
     public Transform AnimatedMesh;
     public PlayerCamera playerCamera;
     public Animator anim;
@@ -263,11 +265,13 @@ public class PlayerMachine : SuperStateMachine {
     {
         // Run every frame we are in the idle state
         floatSoundEI.setParameterValue("isFloating", 0);
+        
+        if (jetpackParticles.isPlaying)
+            jetpackParticles.Stop();
+
         if (!input.Current.JumpInput)
-        {
             prevJumpInput = false;
-            
-        }
+        
 
         if (input.Current.JumpInput && !prevJumpInput)
         {
@@ -300,6 +304,8 @@ public class PlayerMachine : SuperStateMachine {
     {
         floatSoundEI.setParameterValue("isFloating", 0);
 
+        if (jetpackParticles.isPlaying)
+            jetpackParticles.Stop();
 
         FMOD.Studio.PLAYBACK_STATE playbackState;
         walkSoundEI.getPlaybackState(out playbackState);
@@ -361,6 +367,8 @@ public class PlayerMachine : SuperStateMachine {
                     FMODUnity.RuntimeManager.PlayOneShotAttached(burstSound, this.gameObject);
                     doubleJumped = true;
                     // prevJumpInput = true;
+                    if (!jetpackParticles.isPlaying)
+                        jetpackParticles.Play();
                     moveDirection += controller.up * CalculateJumpSpeed(JumpHeight, Gravity);
                 }
                 // Debug.Log("Double jump hover thingy?");
@@ -380,7 +388,8 @@ public class PlayerMachine : SuperStateMachine {
                 else
                     floatSoundEI.setParameterValue("isFloating", 1);
 
-
+                if (!jetpackParticles.isPlaying)
+                    jetpackParticles.Play();
                 var vertical =(moveDirection - (Math3d.ProjectVectorOnPlane(controller.up, moveDirection))).magnitude;
                 float lastMagnitude = (lastPos - planet.position).magnitude;
                 float currentMagnitude = (currentPos - planet.position).magnitude;
@@ -404,6 +413,7 @@ public class PlayerMachine : SuperStateMachine {
         if (!input.Current.JumpInput)
         {
             floatSoundEI.setParameterValue("isFloating", 0);
+            jetpackParticles.Stop();
             prevJumpInput = false;
             
         }

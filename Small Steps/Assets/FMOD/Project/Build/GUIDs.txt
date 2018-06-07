@@ -1,5 +1,6 @@
 {cd3c39c0-847b-4157-ac39-9632db1e0152} event:/Catch Satellite
 {55530ccb-f5f0-409f-bb19-b66671be0867} event:/Footsteps
+{9628444b-57a9-4860-91d8-745034b74d10} event:/GroundEnemy
 {e5842e8a-683d-475b-a272-56393ca999bb} event:/Jetpack burst
 {cae68239-6c49-4721-a28a-2748773a1a51} event:/Jetpack Hover
 {c8012b1c-c111-4876-a4f8-c52cfecd2120} event:/Jump
@@ -8,8 +9,10 @@
 {1e178d94-fe6d-4d50-af24-e60a9fb6c825} event:/Menu Quit Game
 {61a2f70e-c552-4281-8b0c-bd0f3fb656a8} event:/Menu select item
 {1f22c33c-ea9b-4e42-84ff-b693715d9db2} event:/Music and Ambient
+{6b31a42e-7449-4821-98ad-fccf05abb22e} event:/Music and Ambient 2
 {0bb51ce3-3842-469b-acff-8c8e1647c51d} event:/Net Charge
 {5d1e4655-aa32-485a-8ae8-ae075de9aacc} event:/Net Swing
+{7ed92dad-5075-4d4a-b679-4fba97798d9a} event:/PlanetAmbient
 {59095d0f-2fb0-4ece-98e7-eaf101ee6ad6} event:/Round Lost
 {c0fe645d-edbf-40f7-be1e-827eafd7345e} event:/Round Won
 {21714208-9fd5-4a0e-b8f2-5cc043184a17} event:/Satellite random sounds
