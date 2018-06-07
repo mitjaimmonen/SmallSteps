@@ -31,69 +31,77 @@ public class AStarPathfinding : MonoBehaviour
 
 
 
-	IEnumerator FindPath(Vector3 _startPos, Vector3 _targetPos)
-	{
-		Stopwatch sw = new Stopwatch();
-		sw.Start();
+    IEnumerator FindPath(Vector3 _startPos, Vector3 _targetPos)
+    {
+        Stopwatch sw = new Stopwatch();
+        sw.Start();
 
-		Vector3[] waypoints = new Vector3[0];
-		bool pathSuccess = false;
+        Vector3[] waypoints = new Vector3[0];
+        bool pathSuccess = false;
 
-		Node startNode = sphericalGrid.NodeFromWorldPoint(_startPos);
-		Node targetNode = sphericalGrid.NodeFromWorldPoint(_targetPos);
+        Node startNode = sphericalGrid.NodeFromWorldPoint(_startPos);
+        Node targetNode = sphericalGrid.NodeFromWorldPoint(_targetPos);
 
-		Heap<Node> openSet = new Heap<Node>(sphericalGrid.maxSize);
-		HashSet<Node> closedSet = new HashSet<Node>();
+        if ( targetNode.nodeType == NodeType.NotWalkable)
+        {
 
-		openSet.Add(startNode);
+            yield return null;
+        }
+        else
+        {
+            Heap<Node> openSet = new Heap<Node>(sphericalGrid.maxSize);
+            HashSet<Node> closedSet = new HashSet<Node>();
 
-		while(openSet.Count > 0)
-		{
-			Node currentNode = openSet.RemoveFirst();
-			closedSet.Add (currentNode);
+            openSet.Add(startNode);
 
-			if(currentNode == targetNode)
-			{
-				sw.Stop();
-				print ("Path found: " + sw.ElapsedMilliseconds + "ms");
-				pathSuccess = true;
-				break;
-			}
+            while (openSet.Count > 0)
+            {
+                Node currentNode = openSet.RemoveFirst();
+                closedSet.Add(currentNode);
 
-			foreach(int nodeId in currentNode.neighbours)
-			{
-				Node neighbour = sphericalGrid.nodes[nodeId];
+                if (currentNode == targetNode)
+                {
+                    sw.Stop();
+                    print("Path found: " + sw.ElapsedMilliseconds + "ms");
+                    pathSuccess = true;
+                    break;
+                }
 
-				if (neighbour.nodeType == NodeType.NotWalkable || closedSet.Contains(neighbour))
-					continue;
+                foreach (int nodeId in currentNode.neighbours)
+                {
+                    Node neighbour = sphericalGrid.nodes[nodeId];
 
-				float newMovementCostToNeighbour = currentNode.gCost + sphericalGrid.GetSphericalDistance(currentNode, neighbour);
-				if (newMovementCostToNeighbour < neighbour.gCost ||
-				    !openSet.Contains(neighbour))
-				{
-					neighbour.gCost = newMovementCostToNeighbour;
-					neighbour.hCost = sphericalGrid.GetSphericalDistance(neighbour, targetNode);
-					neighbour.parent = currentNode;
+                    if (neighbour.nodeType == NodeType.NotWalkable || closedSet.Contains(neighbour))
+                        continue;
 
-					if (!openSet.Contains(neighbour))
-					{
-						openSet.Add(neighbour);
-					}
-					else
-						openSet.UpdateItem(neighbour);
-				}
-			}
-		}
+                    float newMovementCostToNeighbour = currentNode.gCost + sphericalGrid.GetSphericalDistance(currentNode, neighbour);
+                    if (newMovementCostToNeighbour < neighbour.gCost ||
+                        !openSet.Contains(neighbour))
+                    {
+                        neighbour.gCost = newMovementCostToNeighbour;
+                        neighbour.hCost = sphericalGrid.GetSphericalDistance(neighbour, targetNode);
+                        neighbour.parent = currentNode;
 
-		yield return null;
+                        if (!openSet.Contains(neighbour))
+                        {
+                            openSet.Add(neighbour);
+                        }
+                        else
+                            openSet.UpdateItem(neighbour);
+                    }
+                }
+            }
 
-		if(pathSuccess)
-		{
-			waypoints = RetracePath(startNode, targetNode);
-		}
+            yield return null;
+        }
 
-		requestManager.FinishedProcessingPath(waypoints, pathSuccess);
-	}
+            if (pathSuccess)
+            {
+                waypoints = RetracePath(startNode, targetNode);
+            }
+
+            requestManager.FinishedProcessingPath(waypoints, pathSuccess);
+    }
 
 
 

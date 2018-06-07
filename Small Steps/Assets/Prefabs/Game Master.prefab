@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 114678226548644322}
   - component: {fileID: 114501579109928314}
   - component: {fileID: 114202101597923962}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Game Master
-  m_TagString: Untagged
+  m_TagString: Walkable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
