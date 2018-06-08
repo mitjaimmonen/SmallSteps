@@ -380,7 +380,7 @@ ModelImporter:
       name: Death
       takeName: Default Take
       firstFrame: 166
-      lastFrame: 190
+      lastFrame: 184
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

@@ -46,7 +46,7 @@ public class PlayerMachine : SuperStateMachine
 
 
     [FMODUnity.EventRef] public string deathSound, damageSound;
-    bool destroying;
+    bool dying;
     Health health;
     public float maxHealth;
     public GameObject takeDamageParticles;
@@ -135,8 +135,10 @@ public class PlayerMachine : SuperStateMachine
         {
             Quaternion rot = transform.rotation;
             rot.y = Random.Range(0, 360);
-            GameObject temp = Instantiate(takeDamageParticles, transform.position, rot);
-            Destroy(temp, 2f);
+            var pos = transform.position;
+            pos.y += 0.5f;
+            GameObject temp = Instantiate(takeDamageParticles, pos, rot);
+            // Destroy(temp, 2f);
         }
 
 
@@ -149,12 +151,12 @@ public class PlayerMachine : SuperStateMachine
     void DIE()
     {
         //Play dead animation
-        if (!destroying)
+        if (!dying)
         {
             if (deathSound != "")
                 FMODUnity.RuntimeManager.PlayOneShot(deathSound, transform.position);
-            anim.SetTrigger("death");
-            destroying = true;
+            anim.SetBool("isDead", true);
+            dying = true;
         }
 
     }
@@ -228,21 +230,26 @@ public class PlayerMachine : SuperStateMachine
     /// </summary>
     private Vector3 LocalMovement()
     {
-        Vector3 right = Vector3.Cross(controller.up, lookDirection);
-
-        Vector3 local = Vector3.zero;
-
-        if (input.Current.MoveInput.x != 0)
+        if (health.isAlive())
         {
-            local += right * input.Current.MoveInput.x;
-        }
+            Vector3 right = Vector3.Cross(controller.up, lookDirection);
 
-        if (input.Current.MoveInput.z != 0)
-        {
-            local += lookDirection * input.Current.MoveInput.z;
-        }
+            Vector3 local = Vector3.zero;
 
-        return local;
+            if (input.Current.MoveInput.x != 0)
+            {
+                local += right * input.Current.MoveInput.x;
+            }
+
+            if (input.Current.MoveInput.z != 0)
+            {
+                local += lookDirection * input.Current.MoveInput.z;
+            }
+
+            return local;
+        }
+        return Vector3.zero;
+
     }
 
     // Calculate the initial velocity of a jump based off gravity and desired maximum height attained

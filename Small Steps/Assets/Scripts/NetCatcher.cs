@@ -7,7 +7,7 @@ public class NetCatcher : MonoBehaviour {
 	public bool isAttacking;
 	[FMODUnity.EventRef] public string catchSound;
 
-	void OnTriggerEnter(Collider col)
+	void OnTriggerStay(Collider col)
 	{
 		// Debug.Log("TriggerEnter, isAttacking: " + isAttacking);
 		if (isAttacking)

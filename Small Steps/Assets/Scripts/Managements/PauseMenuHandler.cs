@@ -40,7 +40,7 @@ public class PauseMenuHandler : MonoBehaviour
         if (player.CurrentHealth <= 0)
         {
             Debug.Log("Dead");
-            if (deathCounter > 0.7f)
+            if (deathCounter > 1f)
             {
                 Container.SetActive(true);
                 isPaused = Container.activeSelf;
@@ -69,15 +69,21 @@ public class PauseMenuHandler : MonoBehaviour
             if (!pause)
             {
                 pause = true;
-                Container.SetActive(!Container.activeSelf);
-                resumeBtn.gameObject.SetActive(true);
-                isPaused = Container.activeSelf;
+                Container.SetActive(true);
                 EventSystem.current.SetSelectedGameObject(null);
-                EventSystem.current.SetSelectedGameObject(resumeBtn.gameObject);
+                if (player.CurrentHealth >0)
+                {
+                    resumeBtn.gameObject.SetActive(true);
+                    EventSystem.current.SetSelectedGameObject(resumeBtn.gameObject);
+                }
+                else
+                    EventSystem.current.SetSelectedGameObject(mainMenuBtn.gameObject);
+                
+                isPaused = Container.activeSelf;
                 Time.timeScale = 0;
 
             }
-            else
+            else if (player.CurrentHealth > 0)
             {
                 ResumeGame();
             }

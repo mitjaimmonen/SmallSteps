@@ -15,10 +15,11 @@
 {0bb51ce3-3842-469b-acff-8c8e1647c51d} event:/Net Charge
 {5d1e4655-aa32-485a-8ae8-ae075de9aacc} event:/Net Swing
 {7ed92dad-5075-4d4a-b679-4fba97798d9a} event:/PlanetAmbient
+{1edbef26-e201-468d-906f-83a053be5d53} event:/PlayerTakeDamage
+{3d921788-509d-42ce-9dee-4588e4c38559} event:/PlayerDie
 {59095d0f-2fb0-4ece-98e7-eaf101ee6ad6} event:/Round Lost
 {c0fe645d-edbf-40f7-be1e-827eafd7345e} event:/Round Won
 {21714208-9fd5-4a0e-b8f2-5cc043184a17} event:/Satellite random sounds
-{1edbef26-e201-468d-906f-83a053be5d53} event:/PlayerTakeDamage
 {c24a7615-e399-4e15-9b0e-c45df70b3268} bus:/
 {239e2e02-8323-48fa-93ac-3fb26ddea6bc} bus:/Reverb
 {bc0d2c16-b47a-4136-88d5-4d633002ecc7} bank:/Master Bank

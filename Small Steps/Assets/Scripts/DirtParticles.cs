@@ -14,26 +14,36 @@ public class DirtParticles : MonoBehaviour {
      {
          InitializeIfNeeded();
          m_Particles = new ParticleSystem.Particle[m_System.main.maxParticles];
+
+         if (!target)
+         {
+             var temp = GameObject.Find("Planet");
+             if (temp)
+                target = temp.transform;
+         }
      }
  
      private void FixedUpdate()
      {
-         // GetParticles is allocation free because we reuse the m_Particles buffer between updates
-         int numParticlesAlive = m_System.GetParticles(m_Particles);
- 
-         // Change only the particles that are alive
-         for (int i = 0; i < numParticlesAlive; i++)
+         if (target)
          {
-             //obtain the inverse direction of each particle and apply velocity towards the object
-             targetDir = m_Particles[i].position - target.transform.position;
- 
-             m_Particles[i].velocity += targetDir * gravity * Time.fixedDeltaTime;
+            // GetParticles is allocation free because we reuse the m_Particles buffer between updates
+            int numParticlesAlive = m_System.GetParticles(m_Particles);
+    
+            // Change only the particles that are alive
+            for (int i = 0; i < numParticlesAlive; i++)
+            {
+                //obtain the inverse direction of each particle and apply velocity towards the object
+                targetDir = m_Particles[i].position - target.transform.position;
+    
+                m_Particles[i].velocity += targetDir * gravity * Time.fixedDeltaTime;
+            }
+            var dir = (transform.position - target.transform.position);
+            transform.up = dir;
+    
+            // Apply the particle changes to the particle system
+            m_System.SetParticles(m_Particles, numParticlesAlive);
          }
-		 var dir = (transform.position - target.transform.position);
-		 transform.up = dir;
- 
-         // Apply the particle changes to the particle system
-         m_System.SetParticles(m_Particles, numParticlesAlive);
      }
  
      private void InitializeIfNeeded()

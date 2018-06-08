@@ -22,9 +22,8 @@ public class PlayerInputController : MonoBehaviour {
     public void HandleInput(GamePadState state, GamePadState prevState)
     {
 
-        HandleMove(state);
-        HandleRotating(state); //Also basic attack
-
+        // HandleMove(state);
+        // HandleRotating(state); //Also basic attack
         // Retrieve our current WASD or Arrow Key input
         // Using GetAxisRaw removes any kind of gravity or filtering being applied to the input
         // Ensuring that we are getting either -1, 0 or 1

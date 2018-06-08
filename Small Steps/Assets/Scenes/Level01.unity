@@ -280,7 +280,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4176250864538280, guid: 218636141eb88c846b3dfdcfb44a3093, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 218636141eb88c846b3dfdcfb44a3093, type: 2}
@@ -330,6 +330,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114738540888796598, guid: e892edd67353d7145bab090314a233c7,
+        type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1968486153}
+    - target: {fileID: 114898056878386580, guid: e892edd67353d7145bab090314a233c7,
+        type: 2}
+      propertyPath: planet
+      value: 
+      objectReference: {fileID: 1968486153}
     - target: {fileID: 114572357879162296, guid: e892edd67353d7145bab090314a233c7,
         type: 2}
       propertyPath: playerCamera
@@ -338,16 +348,6 @@ Prefab:
     - target: {fileID: 114572357879162296, guid: e892edd67353d7145bab090314a233c7,
         type: 2}
       propertyPath: planet
-      value: 
-      objectReference: {fileID: 1968486153}
-    - target: {fileID: 114898056878386580, guid: e892edd67353d7145bab090314a233c7,
-        type: 2}
-      propertyPath: planet
-      value: 
-      objectReference: {fileID: 1968486153}
-    - target: {fileID: 114738540888796598, guid: e892edd67353d7145bab090314a233c7,
-        type: 2}
-      propertyPath: target
       value: 
       objectReference: {fileID: 1968486153}
     m_RemovedComponents: []
@@ -585,7 +585,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f2d2a6c27942b7e458bd946688891938, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f2d2a6c27942b7e458bd946688891938, type: 3}
@@ -898,7 +898,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4370525892173870, guid: a692932def8d0b34b88fc0e83a45f3e6, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114169579921488382, guid: a692932def8d0b34b88fc0e83a45f3e6,
         type: 2}
@@ -1254,5 +1254,5 @@ Transform:
   - {fileID: 361115845}
   - {fileID: 69405198}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

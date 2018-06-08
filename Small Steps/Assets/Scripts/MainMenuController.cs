@@ -26,6 +26,7 @@ public class MainMenuController : MonoBehaviour {
 	{
 		if (EventSystem.current.currentSelectedGameObject == null)
 		{
+			EventSystem.current.SetSelectedGameObject(startBtn);
 			chosenItem = startBtn;
 		}
 		if (Input.GetButton("Submit"))
@@ -34,8 +35,12 @@ public class MainMenuController : MonoBehaviour {
 		}
 		if (EventSystem.current.currentSelectedGameObject != chosenItem)
 		{
-			FMODUnity.RuntimeManager.PlayOneShot(selectionSound, cameraTrans.position);
-			chosenItem = EventSystem.current.currentSelectedGameObject;
+			if (EventSystem.current.currentSelectedGameObject != null)
+			{
+				FMODUnity.RuntimeManager.PlayOneShot(selectionSound, cameraTrans.position);
+				chosenItem = EventSystem.current.currentSelectedGameObject;
+
+			}
 		}
 	}
 
