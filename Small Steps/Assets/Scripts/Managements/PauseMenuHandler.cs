@@ -16,6 +16,7 @@ public class PauseMenuHandler : MonoBehaviour
     InputManager input;
     bool isPaused;
     bool pause;
+    float deathCounter;
     PlayerMachine player;
     void Awake()
     {
@@ -35,18 +36,24 @@ public class PauseMenuHandler : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(EventSystem.current.currentSelectedGameObject);       
+        Debug.Log(EventSystem.current.currentSelectedGameObject);
         if (player.CurrentHealth <= 0)
         {
             Debug.Log("Dead");
-            Container.SetActive(true);
-            isPaused = Container.activeSelf;
-            scoreText.text = "Score: " + gameMaster.scoreManager.GetScore().ToString("f0");
-            scoreText.gameObject.SetActive(true);
-            Time.timeScale = 0;
-            resumeBtn.gameObject.SetActive(false);
-            if (EventSystem.current.currentSelectedGameObject == null || EventSystem.current.currentSelectedGameObject == resumeBtn.gameObject)
-                EventSystem.current.SetSelectedGameObject(mainMenuBtn.gameObject);
+            if (deathCounter > 0.7f)
+            {
+                Container.SetActive(true);
+                isPaused = Container.activeSelf;
+                scoreText.text = "Score: " + gameMaster.scoreManager.GetScore().ToString("f0");
+                scoreText.gameObject.SetActive(true);
+                Time.timeScale = 0;
+                resumeBtn.gameObject.SetActive(false);
+                deathCounter = 0;
+                if (EventSystem.current.currentSelectedGameObject == null || EventSystem.current.currentSelectedGameObject == resumeBtn.gameObject)
+                    EventSystem.current.SetSelectedGameObject(mainMenuBtn.gameObject);
+            }
+            else
+                deathCounter += Time.deltaTime;
         }
         else
         {
@@ -64,18 +71,18 @@ public class PauseMenuHandler : MonoBehaviour
                 pause = true;
                 Container.SetActive(!Container.activeSelf);
                 resumeBtn.gameObject.SetActive(true);
-                isPaused = Container.activeSelf;                
+                isPaused = Container.activeSelf;
                 EventSystem.current.SetSelectedGameObject(null);
                 EventSystem.current.SetSelectedGameObject(resumeBtn.gameObject);
                 Time.timeScale = 0;
-              
+
             }
             else
             {
                 ResumeGame();
             }
 
-          
+
         }
     }
 
